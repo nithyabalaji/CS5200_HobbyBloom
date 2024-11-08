@@ -8,13 +8,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        // If user is logged in, push main navigation controller
+        let mainNavigationController = NavigationViewController()
+        self.navigationController?.pushViewController(mainNavigationController, animated: true)
     }
-
-    
-
 }
-
