@@ -28,16 +28,18 @@ class HomePageView: UIView {
         self.setupTabBarItem(allEventsTab)
         tabBar.items = [forYouTab, allEventsTab]
         
-        tabBar.layer.borderWidth = 1
+        //tabBar.layer.borderWidth = 1
         tabBar.layer.borderColor = UIColor.gray.cgColor
-        tabBar.backgroundColor = .systemPurple
+        tabBar.backgroundColor = .clear
         tabBar.tintColor = .systemRed
         tabBar.selectedItem = forYouTab
+        
         self.addSubviewToView(subview: tabBar)
     }
     
     func setupTabBarItem(_ item: UITabBarItem) {
-        item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -16)
+        item.setTitleTextAttributes([.font: UIFont.boldSystemFont(ofSize: 16)], for: .normal)
+        //item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -16)
     }
     
     func addSubviewToView(subview: UIView) {
@@ -48,10 +50,9 @@ class HomePageView: UIView {
     //MARK: setting up constraints...
     func initConstraints(){
         NSLayoutConstraint.activate([
-            //profilePic.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 8)
             tabBar.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             tabBar.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor),
-            tabBar.heightAnchor.constraint(equalToConstant: 48),
+            //tabBar.heightAnchor.constraint(equalToConstant: 48),
         ])
     }
     
