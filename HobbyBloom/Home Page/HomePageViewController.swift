@@ -18,7 +18,13 @@ class HomePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        //title = "Home"
+        let logoutButton = UIBarButtonItem(title: "blah", style: .plain, target: self, action: #selector(onLogOutBarButtonTapped))
+        navigationItem.rightBarButtonItem = logoutButton
+        title = "Home"
+    }
+    
+    @objc func onLogOutBarButtonTapped() {
+        
     }
 
 }
