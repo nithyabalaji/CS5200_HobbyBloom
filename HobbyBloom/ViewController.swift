@@ -46,7 +46,9 @@ class ViewController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
         // if user is not logged in, display login screen modally
+
     }
 }
