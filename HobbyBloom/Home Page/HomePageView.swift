@@ -10,12 +10,14 @@ import UIKit
 class HomePageView: UIView {
     
     var tabBar: UITabBar!
+    var tabUnderline: UIView!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
         
         setupTabBar()
+        setupTabUnderline()
         
         initConstraints()
     }
@@ -28,10 +30,11 @@ class HomePageView: UIView {
         self.setupTabBarItem(allEventsTab)
         tabBar.items = [forYouTab, allEventsTab]
         
-        //tabBar.layer.borderWidth = 1
-        tabBar.layer.borderColor = UIColor.gray.cgColor
-        tabBar.backgroundColor = .clear
+        tabBar.layer.borderWidth = 0
         tabBar.tintColor = .systemRed
+        //tabBar.backgroundColor = .blue
+        //tabBar.unselectedItemTintColor = .green
+        tabBar.isTranslucent = false
         tabBar.selectedItem = forYouTab
         
         self.addSubviewToView(subview: tabBar)
@@ -40,6 +43,12 @@ class HomePageView: UIView {
     func setupTabBarItem(_ item: UITabBarItem) {
         item.setTitleTextAttributes([.font: UIFont.boldSystemFont(ofSize: 16)], for: .normal)
         //item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -16)
+    }
+    
+    func setupTabUnderline() {
+        tabUnderline = UIView()
+        tabUnderline.backgroundColor = .red 
+        self.addSubviewToView(subview: tabUnderline)
     }
     
     func addSubviewToView(subview: UIView) {
@@ -52,7 +61,6 @@ class HomePageView: UIView {
         NSLayoutConstraint.activate([
             tabBar.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             tabBar.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor),
-            //tabBar.heightAnchor.constraint(equalToConstant: 48),
         ])
     }
     
