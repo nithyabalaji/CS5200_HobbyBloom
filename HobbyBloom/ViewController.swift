@@ -33,7 +33,15 @@ class ViewController: UITabBarController, UITabBarControllerDelegate {
         )
         tabHome.tabBarItem = tabHomeBarItem
         tabHome.title = "Home"
-        
+        let tabProfile = UINavigationController(rootViewController: ProfileViewController())
+//        let tabProfile = ProfileViewController()
+        let tabProfileBarItem = UITabBarItem(
+            title: "Profile",
+            image: UIImage(systemName: "person"),
+            selectedImage: UIImage(systemName: "person.fill")
+        )
+        tabProfile.tabBarItem = tabProfileBarItem
+        tabProfile.title = "Profile"
         /*
         //MARK: setting up home tab bar...
         let tabHome1 = UINavigationController(rootViewController: HomePageViewController())
@@ -47,7 +55,7 @@ class ViewController: UITabBarController, UITabBarControllerDelegate {
          */
         
         //MARK: setting up this view controller as the Tab Bar Controller...
-        self.viewControllers = [tabHome]
+        self.viewControllers = [tabHome, tabProfile]
         
         
         self.selectedViewController = tabHome
