@@ -10,6 +10,7 @@ import UIKit
 class HomePageViewController: UIViewController {
 
     let homeView = HomePageView()
+    //let datesSelected
         
     override func loadView() {
         view = homeView
@@ -22,19 +23,42 @@ class HomePageViewController: UIViewController {
         
         self.homeView.tabBar.delegate = self
         self.updateLinePosition()
+        
+        if self.homeView.tabBar.selectedItem?.tag == 0 {
+            self.updateFilterConstraints(showFilters: false)
+        }
+        
+        self.homeView.buttonDateFilter.addTarget(self, action: #selector(onButtonDateFilterTapped), for: .touchUpInside)
+        
     }
+
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         updateLinePosition()
     }
+    
+    @objc func onButtonDateFilterTapped() {
+        let dateFilterController = DateFilterViewController()
+                
+        dateFilterController.modalPresentationStyle = .pageSheet
+        
+        if let dateFilterSheet = dateFilterController.sheetPresentationController {
+            dateFilterSheet.detents = [.large()]
+            dateFilterSheet.prefersGrabberVisible = true
+        }
+        
+        present(dateFilterController, animated: true)
+    }
 
 }
 
+// functions dealing with switching tabs
 extension HomePageViewController: UITabBarDelegate {
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        updateLinePosition()
+        self.updateLinePosition()
+        self.updateFilterConstraints(showFilters: item.tag == 1)
     }
     
     func updateLinePosition() {
@@ -55,6 +79,23 @@ extension HomePageViewController: UITabBarDelegate {
                 height: lineHeight
             )
         }
+    }
+    
+    func updateFilterConstraints(showFilters: Bool){
+        if showFilters {
+            self.homeView.buttonDateFilter.isHidden = false
+            self.homeView.buttonCategoryFilter.isHidden = false
+            self.homeView.buttonDateFilter.isEnabled = true
+            self.homeView.buttonCategoryFilter.isEnabled = true
+            self.homeView.filterButtonsHeightConstraint.constant = 35
+        } else {
+            self.homeView.buttonDateFilter.isHidden = true
+            self.homeView.buttonCategoryFilter.isHidden = true
+            self.homeView.buttonDateFilter.isEnabled = false
+            self.homeView.buttonCategoryFilter.isEnabled = false
+            self.homeView.filterButtonsHeightConstraint.constant = 0
+        }
+        self.homeView.layoutIfNeeded()
     }
 }
 
