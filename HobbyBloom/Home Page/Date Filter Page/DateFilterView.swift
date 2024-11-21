@@ -11,6 +11,8 @@ class DateFilterView: UIView {
 
     var selectDatesLabel: UILabel!
     var calendarView: UICalendarView!
+    var clearAllButton: UIButton!
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)

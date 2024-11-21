@@ -41,7 +41,7 @@ class HomePageView: UIView {
         tabBar.items = [forYouTab, allEventsTab]
         
         tabBar.layer.borderWidth = 0
-        tabBar.tintColor = .systemRed
+        tabBar.tintColor = .myDarkRed
         //tabBar.backgroundColor = .blue
         //tabBar.unselectedItemTintColor = .green
         tabBar.isTranslucent = false
@@ -57,7 +57,7 @@ class HomePageView: UIView {
     
     func setupTabUnderline() {
         tabUnderline = UIView()
-        tabUnderline.backgroundColor = .red 
+        tabUnderline.backgroundColor = .myDarkRed
         self.addSubviewToView(subview: tabUnderline)
     }
     
