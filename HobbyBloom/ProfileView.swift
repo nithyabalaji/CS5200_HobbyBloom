@@ -1,12 +1,184 @@
+////
+////  ProfileView.swift
+////  HobbyBloom
+////
+////  Created by Ashmitha appandaraju on 11/19/24.
+////
+//import UIKit
 //
-//  ProfileView.swift
-//  HobbyBloom
+//class ProfileView: UIView {
 //
-//  Created by Ashmitha appandaraju on 11/19/24.
+//    var profileImageView = UIImageView()
+//    var nameLabel = UILabel()
+//    var locationLabel = UILabel()
+//    var emailLabel = UILabel()
+//
+//    var interestsTitleLabel = UILabel()
+//    var interestsStackView = UIStackView()
+//    
+//    var skillsTitleLabel = UILabel()
+//    var skillsStackView = UIStackView()
+//    
+//    var personalityTitleLabel = UILabel()
+//    var personalityStackView = UIStackView()
+//    
+//    var reQuizButton = UIButton()
+//
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        setupViews()
+//        setupConstraints()
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+//     func setupViews() {
+//        // Profile Image
+//        profileImageView.image = UIImage(systemName: "person.circle.fill")
+//        profileImageView.contentMode = .scaleAspectFit
+//        profileImageView.tintColor = .black
+//        profileImageView.translatesAutoresizingMaskIntoConstraints = false
+//        addSubview(profileImageView)
+//
+//        // Name Label
+//        nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
+//        nameLabel.textColor = .black
+//        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+//        addSubview(nameLabel)
+//
+//        // Location Label
+//        locationLabel.font = UIFont.systemFont(ofSize: 14)
+//        locationLabel.textColor = .gray
+//        locationLabel.translatesAutoresizingMaskIntoConstraints = false
+//        addSubview(locationLabel)
+//
+//        // Email Label
+//        emailLabel.font = UIFont.systemFont(ofSize: 14)
+//        emailLabel.textColor = .gray
+//        emailLabel.translatesAutoresizingMaskIntoConstraints = false
+//        addSubview(emailLabel)
+//
+//        // Tags: Interests
+//        interestsTitleLabel.text = "Interests"
+//        interestsTitleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+//        interestsTitleLabel.textColor = .black
+//        interestsTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+//        addSubview(interestsTitleLabel)
+//
+//        interestsStackView.axis = .horizontal
+//        interestsStackView.spacing = 8
+//        interestsStackView.translatesAutoresizingMaskIntoConstraints = false
+//        addSubview(interestsStackView)
+//
+//        // Tags: Skills
+//        skillsTitleLabel.text = "Skills"
+//        skillsTitleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+//        skillsTitleLabel.textColor = .black
+//        skillsTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+//        addSubview(skillsTitleLabel)
+//
+//        skillsStackView.axis = .horizontal
+//        skillsStackView.spacing = 8
+//        skillsStackView.translatesAutoresizingMaskIntoConstraints = false
+//        addSubview(skillsStackView)
+//
+//        // Tags: Personality
+//        personalityTitleLabel.text = "Personality"
+//        personalityTitleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+//        personalityTitleLabel.textColor = .black
+//        personalityTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+//        addSubview(personalityTitleLabel)
+//
+//        personalityStackView.axis = .horizontal
+//        personalityStackView.spacing = 8
+//        personalityStackView.translatesAutoresizingMaskIntoConstraints = false
+//        addSubview(personalityStackView)
+//
+//        // Re-Quiz Button
+//        reQuizButton.setTitle("Re Quiz", for: .normal)
+//        reQuizButton.setTitleColor(.white, for: .normal)
+//         reQuizButton.backgroundColor = .myDarkPurple
+//        reQuizButton.layer.cornerRadius = 8
+//        reQuizButton.translatesAutoresizingMaskIntoConstraints = false
+//        addSubview(reQuizButton)
+//    }
+//
+//     func setupConstraints() {
+//        NSLayoutConstraint.activate([
+//            // Profile Image
+//            profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 80),
+//            profileImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+//            profileImageView.widthAnchor.constraint(equalToConstant: 80),
+//            profileImageView.heightAnchor.constraint(equalToConstant: 80),
+//
+//            // Name Label
+//            nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 10),
+//            nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+//
+//            // Location Label
+//            locationLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
+//            locationLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+//
+//            // Email Label
+//            emailLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 5),
+//            emailLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+//
+//            // Interests
+//            interestsTitleLabel.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 20),
+//            interestsTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+//
+//            interestsStackView.topAnchor.constraint(equalTo: interestsTitleLabel.bottomAnchor, constant: 10),
+//            interestsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+//
+//            // Skills
+//            skillsTitleLabel.topAnchor.constraint(equalTo: interestsStackView.bottomAnchor, constant: 20),
+//            skillsTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+//
+//            skillsStackView.topAnchor.constraint(equalTo: skillsTitleLabel.bottomAnchor, constant: 10),
+//            skillsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+//
+//            // Personality
+//            personalityTitleLabel.topAnchor.constraint(equalTo: skillsStackView.bottomAnchor, constant: 20),
+//            personalityTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+//
+//            personalityStackView.topAnchor.constraint(equalTo: personalityTitleLabel.bottomAnchor, constant: 10),
+//            personalityStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+//
+//            // Re-Quiz Button
+//            reQuizButton.topAnchor.constraint(equalTo: personalityStackView.bottomAnchor, constant: 80),
+//            reQuizButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+//            reQuizButton.widthAnchor.constraint(equalToConstant: 100),
+//            reQuizButton.heightAnchor.constraint(equalToConstant: 40)
+//        ])
+//    }
+//
+//    func configureTags(for stackView: UIStackView, with tags: [String]) {
+//        stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+//        stackView.alignment = .leading
+//        stackView.distribution = .fillEqually
+//        for tag in tags {
+//            let tagLabel = PaddingLabel()
+//            tagLabel.text = tag
+//            tagLabel.font = UIFont.systemFont(ofSize: 14)
+//            tagLabel.textColor = .white
+//            tagLabel.backgroundColor = .red
+//            tagLabel.textAlignment = .center
+//            tagLabel.layer.cornerRadius = 8
+//            tagLabel.clipsToBounds = true
+//            tagLabel.padding = UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 8)
+//            tagLabel.translatesAutoresizingMaskIntoConstraints = false
+//            tagLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+//            tagLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 50).isActive = true
+//            stackView.addArrangedSubview(tagLabel)
+//        }
+//    }
+//}
 //
 import UIKit
 
-class ProfileView: UIView {
+class ProfileView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     var profileImageView = UIImageView()
     var nameLabel = UILabel()
@@ -14,15 +186,19 @@ class ProfileView: UIView {
     var emailLabel = UILabel()
 
     var interestsTitleLabel = UILabel()
-    var interestsStackView = UIStackView()
-    
+    var interestsCollectionView: UICollectionView!
+
     var skillsTitleLabel = UILabel()
-    var skillsStackView = UIStackView()
-    
+    var skillsCollectionView: UICollectionView!
+
     var personalityTitleLabel = UILabel()
-    var personalityStackView = UIStackView()
-    
+    var personalityCollectionView: UICollectionView!
+
     var reQuizButton = UIButton()
+
+    var interests = [String]()
+    var skills = [String]()
+    var personality = [String]()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,7 +210,7 @@ class ProfileView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-     func setupViews() {
+    func setupViews() {
         // Profile Image
         profileImageView.image = UIImage(systemName: "person.circle.fill")
         profileImageView.contentMode = .scaleAspectFit
@@ -60,52 +236,46 @@ class ProfileView: UIView {
         emailLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(emailLabel)
 
-        // Tags: Interests
+        // Interests
         interestsTitleLabel.text = "Interests"
         interestsTitleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         interestsTitleLabel.textColor = .black
         interestsTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(interestsTitleLabel)
 
-        interestsStackView.axis = .horizontal
-        interestsStackView.spacing = 8
-        interestsStackView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(interestsStackView)
+        interestsCollectionView = createTagCollectionView()
+        addSubview(interestsCollectionView)
 
-        // Tags: Skills
+        // Skills
         skillsTitleLabel.text = "Skills"
         skillsTitleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         skillsTitleLabel.textColor = .black
         skillsTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(skillsTitleLabel)
 
-        skillsStackView.axis = .horizontal
-        skillsStackView.spacing = 8
-        skillsStackView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(skillsStackView)
+        skillsCollectionView = createTagCollectionView()
+        addSubview(skillsCollectionView)
 
-        // Tags: Personality
+        // Personality
         personalityTitleLabel.text = "Personality"
         personalityTitleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         personalityTitleLabel.textColor = .black
         personalityTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(personalityTitleLabel)
 
-        personalityStackView.axis = .horizontal
-        personalityStackView.spacing = 8
-        personalityStackView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(personalityStackView)
+        personalityCollectionView = createTagCollectionView()
+        addSubview(personalityCollectionView)
 
         // Re-Quiz Button
         reQuizButton.setTitle("Re Quiz", for: .normal)
         reQuizButton.setTitleColor(.white, for: .normal)
-         reQuizButton.backgroundColor = .myDarkPurple
+        reQuizButton.backgroundColor = .purple
         reQuizButton.layer.cornerRadius = 8
         reQuizButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(reQuizButton)
     }
 
-     func setupConstraints() {
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             // Profile Image
             profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 80),
@@ -129,50 +299,117 @@ class ProfileView: UIView {
             interestsTitleLabel.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 20),
             interestsTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
 
-            interestsStackView.topAnchor.constraint(equalTo: interestsTitleLabel.bottomAnchor, constant: 10),
-            interestsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            interestsCollectionView.topAnchor.constraint(equalTo: interestsTitleLabel.bottomAnchor, constant: 10),
+            interestsCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            interestsCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            interestsCollectionView.heightAnchor.constraint(equalToConstant: 50),
 
             // Skills
-            skillsTitleLabel.topAnchor.constraint(equalTo: interestsStackView.bottomAnchor, constant: 20),
+            skillsTitleLabel.topAnchor.constraint(equalTo: interestsCollectionView.bottomAnchor, constant: 0),
             skillsTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
 
-            skillsStackView.topAnchor.constraint(equalTo: skillsTitleLabel.bottomAnchor, constant: 10),
-            skillsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            skillsCollectionView.topAnchor.constraint(equalTo: skillsTitleLabel.bottomAnchor, constant: 10),
+            skillsCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            skillsCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            skillsCollectionView.heightAnchor.constraint(equalToConstant: 100),
 
             // Personality
-            personalityTitleLabel.topAnchor.constraint(equalTo: skillsStackView.bottomAnchor, constant: 20),
+            personalityTitleLabel.topAnchor.constraint(equalTo: skillsCollectionView.bottomAnchor, constant: 20),
             personalityTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
 
-            personalityStackView.topAnchor.constraint(equalTo: personalityTitleLabel.bottomAnchor, constant: 10),
-            personalityStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            personalityCollectionView.topAnchor.constraint(equalTo: personalityTitleLabel.bottomAnchor, constant: 10),
+            personalityCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            personalityCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            personalityCollectionView.heightAnchor.constraint(equalToConstant: 50),
 
             // Re-Quiz Button
-            reQuizButton.topAnchor.constraint(equalTo: personalityStackView.bottomAnchor, constant: 80),
+            reQuizButton.topAnchor.constraint(equalTo: personalityCollectionView.bottomAnchor, constant: 20),
             reQuizButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             reQuizButton.widthAnchor.constraint(equalToConstant: 100),
             reQuizButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
 
-    func configureTags(for stackView: UIStackView, with tags: [String]) {
-        stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        stackView.alignment = .leading
-        stackView.distribution = .fillEqually
-        for tag in tags {
-            let tagLabel = PaddingLabel()
-            tagLabel.text = tag
-            tagLabel.font = UIFont.systemFont(ofSize: 14)
-            tagLabel.textColor = .white
-            tagLabel.backgroundColor = .red
-            tagLabel.textAlignment = .center
-            tagLabel.layer.cornerRadius = 8
-            tagLabel.clipsToBounds = true
-            tagLabel.padding = UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 8)
-            tagLabel.translatesAutoresizingMaskIntoConstraints = false
-            tagLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-            tagLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 50).isActive = true
-            stackView.addArrangedSubview(tagLabel)
+    func createTagCollectionView() -> UICollectionView {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumInteritemSpacing = 8
+        layout.minimumLineSpacing = 8
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.backgroundColor = .clear
+        collectionView.register(TagCell.self, forCellWithReuseIdentifier: "TagCell")
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+
+        return collectionView
+    }
+
+    func configureTags(for collectionView: UICollectionView, with tags: [String]) {
+        if collectionView == interestsCollectionView {
+            interests = tags
+        } else if collectionView == skillsCollectionView {
+            skills = tags
+        } else if collectionView == personalityCollectionView {
+            personality = tags
         }
+        collectionView.reloadData()
+    }
+
+    // MARK: - UICollectionViewDataSource
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == interestsCollectionView {
+            return interests.count
+        } else if collectionView == skillsCollectionView {
+            return skills.count
+        } else {
+            return personality.count
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath) as! TagCell
+        if collectionView == interestsCollectionView {
+            cell.configure(tag: interests[indexPath.row])
+        } else if collectionView == skillsCollectionView {
+            cell.configure(tag: skills[indexPath.row])
+        } else {
+            cell.configure(tag: personality[indexPath.row])
+        }
+        return cell
     }
 }
 
+class TagCell: UICollectionViewCell {
+    private let label = PaddingLabel()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .white
+        label.backgroundColor = .myDarkRed
+        label.textAlignment = .center
+        label.layer.cornerRadius = 8
+        label.clipsToBounds = true
+        label.padding = UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 8)
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        contentView.addSubview(label)
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: contentView.topAnchor),
+            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+        ])
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(tag: String) {
+        label.text = tag
+    }
+}
