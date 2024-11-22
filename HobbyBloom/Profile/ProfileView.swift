@@ -17,8 +17,6 @@ class ProfileView: UIView, UICollectionViewDataSource, UICollectionViewDelegateF
     var interestsTitleLabel = UILabel()
     var interestsCollectionView: UICollectionView!
 
-    var skillsTitleLabel = UILabel()
-    var skillsCollectionView: UICollectionView!
 
     var personalityTitleLabel = UILabel()
     var personalityCollectionView: UICollectionView!
@@ -26,7 +24,7 @@ class ProfileView: UIView, UICollectionViewDataSource, UICollectionViewDelegateF
     var reQuizButton = UIButton()
 
     var interests = [String]()
-    var skills = [String]()
+    //var skills = [String]()
     var personality = [String]()
 
     override init(frame: CGRect) {
@@ -75,15 +73,6 @@ class ProfileView: UIView, UICollectionViewDataSource, UICollectionViewDelegateF
         interestsCollectionView = createTagCollectionView()
         addSubview(interestsCollectionView)
 
-        // Skills
-        skillsTitleLabel.text = "Skills"
-        skillsTitleLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        skillsTitleLabel.textColor = .black
-        skillsTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(skillsTitleLabel)
-
-        skillsCollectionView = createTagCollectionView()
-        addSubview(skillsCollectionView)
 
         // Personality
         personalityTitleLabel.text = "Personality"
@@ -131,26 +120,18 @@ class ProfileView: UIView, UICollectionViewDataSource, UICollectionViewDelegateF
             interestsCollectionView.topAnchor.constraint(equalTo: interestsTitleLabel.bottomAnchor, constant: 10),
             interestsCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             interestsCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            interestsCollectionView.heightAnchor.constraint(equalToConstant: 50),
+            interestsCollectionView.heightAnchor.constraint(equalToConstant: 100),
 
-            // Skills
-            skillsTitleLabel.topAnchor.constraint(equalTo: interestsCollectionView.bottomAnchor, constant: 0),
-            skillsTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-
-            skillsCollectionView.topAnchor.constraint(equalTo: skillsTitleLabel.bottomAnchor, constant: 10),
-            skillsCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            skillsCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            skillsCollectionView.heightAnchor.constraint(equalToConstant: 100),
-
-            // Personality
-            personalityTitleLabel.topAnchor.constraint(equalTo: skillsCollectionView.bottomAnchor, constant: 20),
+            // personality
+            personalityTitleLabel.topAnchor.constraint(equalTo: interestsCollectionView.bottomAnchor, constant: 20),
             personalityTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
 
             personalityCollectionView.topAnchor.constraint(equalTo: personalityTitleLabel.bottomAnchor, constant: 10),
             personalityCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             personalityCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            personalityCollectionView.heightAnchor.constraint(equalToConstant: 50),
+            personalityCollectionView.heightAnchor.constraint(equalToConstant: 100),
 
+    
             // Re-Quiz Button
             reQuizButton.topAnchor.constraint(equalTo: personalityCollectionView.bottomAnchor, constant: 20),
             reQuizButton.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -179,8 +160,6 @@ class ProfileView: UIView, UICollectionViewDataSource, UICollectionViewDelegateF
     func configureTags(for collectionView: UICollectionView, with tags: [String]) {
         if collectionView == interestsCollectionView {
             interests = tags
-        } else if collectionView == skillsCollectionView {
-            skills = tags
         } else if collectionView == personalityCollectionView {
             personality = tags
         }
@@ -191,8 +170,6 @@ class ProfileView: UIView, UICollectionViewDataSource, UICollectionViewDelegateF
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == interestsCollectionView {
             return interests.count
-        } else if collectionView == skillsCollectionView {
-            return skills.count
         } else {
             return personality.count
         }
@@ -202,9 +179,7 @@ class ProfileView: UIView, UICollectionViewDataSource, UICollectionViewDelegateF
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath) as! TagCell
         if collectionView == interestsCollectionView {
             cell.configure(tag: interests[indexPath.row])
-        } else if collectionView == skillsCollectionView {
-            cell.configure(tag: skills[indexPath.row])
-        } else {
+        } else if collectionView == personalityCollectionView {
             cell.configure(tag: personality[indexPath.row])
         }
         return cell
