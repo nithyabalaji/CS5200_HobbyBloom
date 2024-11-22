@@ -1,16 +1,15 @@
 //
-//  DateFilterView.swift
+//  CategoryFilterView.swift
 //  HobbyBloom
 //
-//  Created by Nithya Balaji on 11/20/24.
+//  Created by Nithya Balaji on 11/21/24.
 //
 
 import UIKit
 
-class DateFilterView: UIView {
+class CategoryFilterView: UIView {
 
-    var selectDatesLabel: UILabel!
-    var calendarView: UICalendarView!
+    var selectCategoryLabel: UILabel!
     var clearAllButton: UIButton!
     var filterButton: UIButton!
     
@@ -20,7 +19,6 @@ class DateFilterView: UIView {
         self.backgroundColor = .white
         
         setupSelectDatesLabel()
-        setupCalendarView()
         setupClearAllButton()
         setupFilterButton()
         
@@ -28,19 +26,10 @@ class DateFilterView: UIView {
     }
     
     func setupSelectDatesLabel() {
-        selectDatesLabel = UILabel()
-        selectDatesLabel.text = "Select Dates"
-        selectDatesLabel.font = UIFont.boldSystemFont(ofSize: 22)
-        self.addSubviewToView(subview: selectDatesLabel)
-    }
-    
-    func setupCalendarView() {
-        calendarView = UICalendarView()
-        calendarView.calendar = Calendar(identifier: .gregorian)
-        calendarView.tintColor = .myLightPurple
-        calendarView.availableDateRange = DateInterval(start: .now, end: .distantFuture)
-
-        self.addSubviewToView(subview: calendarView)
+        selectCategoryLabel = UILabel()
+        selectCategoryLabel.text = "Select Category"
+        selectCategoryLabel.font = UIFont.boldSystemFont(ofSize: 22)
+        self.addSubviewToView(subview: selectCategoryLabel)
     }
     
     func setupClearAllButton() {
@@ -68,16 +57,10 @@ class DateFilterView: UIView {
         self.addSubview(subview)
     }
     
-    func her() {
-        //self.calendarView.selectionBehavior.sele
-    }
-    
     func initConstraints() {
         NSLayoutConstraint.activate([
-            selectDatesLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 32),
-            selectDatesLabel.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-            calendarView.topAnchor.constraint(equalTo: self.selectDatesLabel.bottomAnchor, constant: 16),
-            calendarView.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor),
+            selectCategoryLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 32),
+            selectCategoryLabel.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             
             clearAllButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -32),
             clearAllButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 32),
@@ -90,3 +73,4 @@ class DateFilterView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+

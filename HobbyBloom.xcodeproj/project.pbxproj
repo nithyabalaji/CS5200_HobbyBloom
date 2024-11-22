@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		295F09462CEEE48100926C23 /* DateFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295F09452CEEE48100926C23 /* DateFilterViewController.swift */; };
 		295F09482CEEE49100926C23 /* DateFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295F09472CEEE49100926C23 /* DateFilterView.swift */; };
+		295F094B2CEFADCF00926C23 /* CategoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295F094A2CEFADCF00926C23 /* CategoryFilterView.swift */; };
+		295F094D2CEFAE1F00926C23 /* CategoryFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295F094C2CEFAE1F00926C23 /* CategoryFilterViewController.swift */; };
+		295F09502CF1028E00926C23 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295F094F2CF1028E00926C23 /* Categories.swift */; };
 		298BBAD72CEBAC7B0004AF10 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BBAD62CEBAC7B0004AF10 /* Colors.swift */; };
 		299C16992CD537BC009F0430 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299C16982CD537BC009F0430 /* AppDelegate.swift */; };
 		299C169B2CD537BC009F0430 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299C169A2CD537BC009F0430 /* SceneDelegate.swift */; };
@@ -23,6 +26,9 @@
 /* Begin PBXFileReference section */
 		295F09452CEEE48100926C23 /* DateFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFilterViewController.swift; sourceTree = "<group>"; };
 		295F09472CEEE49100926C23 /* DateFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFilterView.swift; sourceTree = "<group>"; };
+		295F094A2CEFADCF00926C23 /* CategoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterView.swift; sourceTree = "<group>"; };
+		295F094C2CEFAE1F00926C23 /* CategoryFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterViewController.swift; sourceTree = "<group>"; };
+		295F094F2CF1028E00926C23 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		298BBAD62CEBAC7B0004AF10 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		299C16952CD537BC009F0430 /* HobbyBloom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HobbyBloom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		299C16982CD537BC009F0430 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +62,15 @@
 			path = "Date Filter Page";
 			sourceTree = "<group>";
 		};
+		295F094E2CEFAE3C00926C23 /* Category Filter */ = {
+			isa = PBXGroup;
+			children = (
+				295F094A2CEFADCF00926C23 /* CategoryFilterView.swift */,
+				295F094C2CEFAE1F00926C23 /* CategoryFilterViewController.swift */,
+			);
+			path = "Category Filter";
+			sourceTree = "<group>";
+		};
 		299C168C2CD537BC009F0430 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +94,7 @@
 				299C169A2CD537BC009F0430 /* SceneDelegate.swift */,
 				299C169C2CD537BC009F0430 /* ViewController.swift */,
 				298BBAD62CEBAC7B0004AF10 /* Colors.swift */,
+				295F094F2CF1028E00926C23 /* Categories.swift */,
 				29FBFAC32CDD36E900F8EC88 /* Home Page */,
 				299C169E2CD537BC009F0430 /* Main.storyboard */,
 				299C16A12CD537BD009F0430 /* Assets.xcassets */,
@@ -93,6 +109,7 @@
 			children = (
 				29FBFABF2CDD36CA00F8EC88 /* HomePageView.swift */,
 				29FBFAC12CDD36E100F8EC88 /* HomePageViewController.swift */,
+				295F094E2CEFAE3C00926C23 /* Category Filter */,
 				295F09492CEF9E6300926C23 /* Date Filter Page */,
 			);
 			path = "Home Page";
@@ -171,8 +188,11 @@
 			files = (
 				299C169D2CD537BC009F0430 /* ViewController.swift in Sources */,
 				298BBAD72CEBAC7B0004AF10 /* Colors.swift in Sources */,
+				295F094D2CEFAE1F00926C23 /* CategoryFilterViewController.swift in Sources */,
+				295F094B2CEFADCF00926C23 /* CategoryFilterView.swift in Sources */,
 				299C16992CD537BC009F0430 /* AppDelegate.swift in Sources */,
 				29FBFAC02CDD36CA00F8EC88 /* HomePageView.swift in Sources */,
+				295F09502CF1028E00926C23 /* Categories.swift in Sources */,
 				295F09462CEEE48100926C23 /* DateFilterViewController.swift in Sources */,
 				29FBFAC22CDD36E100F8EC88 /* HomePageViewController.swift in Sources */,
 				295F09482CEEE49100926C23 /* DateFilterView.swift in Sources */,
