@@ -29,6 +29,7 @@ class HomePageViewController: UIViewController {
         }
         
         self.homeView.buttonDateFilter.addTarget(self, action: #selector(onButtonDateFilterTapped), for: .touchUpInside)
+        self.homeView.buttonCategoryFilter.addTarget(self, action: #selector(onButtonCategoryFilterTapped), for: .touchUpInside)
         
     }
 
@@ -49,6 +50,19 @@ class HomePageViewController: UIViewController {
         }
         
         present(dateFilterController, animated: true)
+    }
+    
+    @objc func onButtonCategoryFilterTapped() {
+        let categoryFilterController = CategoryFilterViewController()
+                
+        categoryFilterController.modalPresentationStyle = .pageSheet
+        
+        if let categoryFilterSheet = categoryFilterController.sheetPresentationController {
+            categoryFilterSheet.detents = [.large()]
+            categoryFilterSheet.prefersGrabberVisible = true
+        }
+        
+        present(categoryFilterController, animated: true)
     }
 
 }

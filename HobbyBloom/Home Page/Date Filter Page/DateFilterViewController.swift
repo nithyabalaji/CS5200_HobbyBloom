@@ -10,6 +10,8 @@ import UIKit
 class DateFilterViewController: UIViewController {
     
     let dateFilterView = DateFilterView()
+    var selectionBehavior: UICalendarSelectionMultiDate!
+    var selectedDates = [DateComponents]()
     
     override func loadView() {
         view = dateFilterView
@@ -19,27 +21,38 @@ class DateFilterViewController: UIViewController {
         super.viewDidLoad()
 
         setCalendarViewSelection()
+        dateFilterView.filterButton.addTarget(self, action: #selector(finishSelecting), for: .touchUpInside)
+        dateFilterView.clearAllButton.addTarget(self, action: #selector(clearSelection), for: .touchUpInside)
     }
     
+    @objc func finishSelecting() {
+        print(selectionBehavior.selectedDates)
+        self.dismiss(animated: true)
+    }
+    
+    @objc func clearSelection() {
+        selectionBehavior.setSelectedDates([], animated: true)
+    }
+    
+    
     func setCalendarViewSelection() {
-        let multiSelect = UICalendarSelectionMultiDate(delegate: self)
-        self.dateFilterView.calendarView.selectionBehavior = multiSelect
+        selectionBehavior = UICalendarSelectionMultiDate(delegate: self)
+        self.dateFilterView.calendarView.selectionBehavior = selectionBehavior
     }
 
 }
 
 extension DateFilterViewController: UICalendarSelectionMultiDateDelegate {
+    
     func multiDateSelection(_ selection: UICalendarSelectionMultiDate, didSelectDate dateComponents: DateComponents) {
-        //print(dateComponents)
+        //selectedDates.append(dateComponents)
         return
     }
     
     func multiDateSelection(_ selection: UICalendarSelectionMultiDate, didDeselectDate dateComponents: DateComponents) {
-        //print("deselect")
-        //print(dateComponents)
+        //selectedDates.removeAll(where: { $0 == dateComponents } )
+        //print(selectedDates)
         return
     }
-    
-    
     
 }
