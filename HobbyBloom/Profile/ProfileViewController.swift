@@ -35,8 +35,7 @@ class ProfileViewController: UIViewController {
         profileview.locationLabel.text = "Boston, MA"
         profileview.emailLabel.text = "doe.jhon@gmail.com"
 
-        profileview.configureTags(for: profileview.interestsCollectionView, with: ["Gaming", "Football", "Chess", "Long drives"])
-        profileview.configureTags(for: profileview.skillsCollectionView, with: ["Swimming", "Hiking","Swimming","Swimming","Swimming","Swimming","Swimming","Swimming","Swimming"])
+        profileview.configureTags(for: profileview.interestsCollectionView, with: ["Gaming", "Football", "Chess", "Long drives","Swimming", "Hiking"])
         profileview.configureTags(for: profileview.personalityCollectionView, with: ["Introvert", "crazy"])
         }
    
