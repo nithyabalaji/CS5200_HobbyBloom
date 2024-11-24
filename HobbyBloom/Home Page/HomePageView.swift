@@ -41,7 +41,7 @@ class HomePageView: UIView {
         tabBar.items = [forYouTab, allEventsTab]
         
         tabBar.layer.borderWidth = 0
-        tabBar.tintColor = .myDarkRed
+        tabBar.tintColor = .myRed
         //tabBar.backgroundColor = .blue
         //tabBar.unselectedItemTintColor = .green
         tabBar.isTranslucent = false
@@ -57,7 +57,7 @@ class HomePageView: UIView {
     
     func setupTabUnderline() {
         tabUnderline = UIView()
-        tabUnderline.backgroundColor = .myDarkRed
+        tabUnderline.backgroundColor = .myRed
         self.addSubviewToView(subview: tabUnderline)
     }
     
@@ -71,7 +71,7 @@ class HomePageView: UIView {
     func setupButtonDateFilter() {
         buttonDateFilter = UIButton(type: .roundedRect)
         buttonDateFilter.setImage(UIImage(systemName: "calendar"), for: .normal)
-        buttonDateFilter.setTitle("Select Date", for: .normal)
+        buttonDateFilter.setTitle("Select Dates", for: .normal)
         self.setupFilterButtons(button: buttonDateFilter)
     }
     

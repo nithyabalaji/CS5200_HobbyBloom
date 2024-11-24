@@ -10,7 +10,10 @@ import UIKit
 class HomePageViewController: UIViewController {
 
     let homeView = HomePageView()
-    //let datesSelected
+    let notificationCenter = NotificationCenter.default
+    var selectedDates = [DateComponents]()
+    var selectedInterests = [String]()
+    var selectedPersonality: String?
         
     override func loadView() {
         view = homeView
@@ -31,38 +34,30 @@ class HomePageViewController: UIViewController {
         self.homeView.buttonDateFilter.addTarget(self, action: #selector(onButtonDateFilterTapped), for: .touchUpInside)
         self.homeView.buttonCategoryFilter.addTarget(self, action: #selector(onButtonCategoryFilterTapped), for: .touchUpInside)
         
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(notificationReceivedForDatesSelected(notification:)),
+            name: .datesToFilterSelected,
+            object: nil)
+        
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(notificationReceivedForInterestsSelected(notification:)),
+            name: .interestsToFilterSelected,
+            object: nil)
+        
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(notificationReceivedForPersonalitySelected(notification:)),
+            name: .personalityToFilterSelected,
+            object: nil)
+        
     }
 
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         updateLinePosition()
-    }
-    
-    @objc func onButtonDateFilterTapped() {
-        let dateFilterController = DateFilterViewController()
-                
-        dateFilterController.modalPresentationStyle = .pageSheet
-        
-        if let dateFilterSheet = dateFilterController.sheetPresentationController {
-            dateFilterSheet.detents = [.large()]
-            dateFilterSheet.prefersGrabberVisible = true
-        }
-        
-        present(dateFilterController, animated: true)
-    }
-    
-    @objc func onButtonCategoryFilterTapped() {
-        let categoryFilterController = CategoryFilterViewController()
-                
-        categoryFilterController.modalPresentationStyle = .pageSheet
-        
-        if let categoryFilterSheet = categoryFilterController.sheetPresentationController {
-            categoryFilterSheet.detents = [.large()]
-            categoryFilterSheet.prefersGrabberVisible = true
-        }
-        
-        present(categoryFilterController, animated: true)
     }
 
 }
