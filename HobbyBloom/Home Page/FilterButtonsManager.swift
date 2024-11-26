@@ -59,13 +59,11 @@ extension HomePageViewController {
     
     @objc func notificationReceivedForInterestsSelected(notification: Notification){
         self.selectedInterests = (notification.object as! [String])
-        print(self.selectedInterests)
         self.updateCategoriesFilterButtonView()
     }
     
     @objc func notificationReceivedForPersonalitySelected(notification: Notification){
         self.selectedPersonality = (notification.object as! String?)
-        print(self.selectedPersonality)
         self.updateCategoriesFilterButtonView()
     }
     

@@ -22,8 +22,6 @@ class HomePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Home"
-        
         self.homeView.tabBar.delegate = self
         self.updateLinePosition()
         
