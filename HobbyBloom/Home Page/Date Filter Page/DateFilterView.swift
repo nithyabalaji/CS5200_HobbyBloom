@@ -59,7 +59,6 @@ class DateFilterView: UIView {
         filterButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         filterButton.layer.cornerRadius = 20
         filterButton.layer.masksToBounds = true
-        filterButton.contentEdgeInsets = UIEdgeInsets(top: 10,left: 30,bottom: 10,right: 30)
         self.addSubviewToView(subview: filterButton)
     }
     
@@ -83,6 +82,8 @@ class DateFilterView: UIView {
             clearAllButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 32),
             filterButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -32),
             filterButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -32),
+            filterButton.heightAnchor.constraint(equalToConstant: 40),
+            filterButton.widthAnchor.constraint(equalToConstant: 96)
         ])
     }
     

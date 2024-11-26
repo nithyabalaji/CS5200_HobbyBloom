@@ -40,10 +40,11 @@ class HomePageView: UIView {
         self.setupTabBarItem(allEventsTab)
         tabBar.items = [forYouTab, allEventsTab]
         
-        tabBar.layer.borderWidth = 0
-        tabBar.tintColor = .myDarkRed
-        //tabBar.backgroundColor = .blue
+        //tabBar.layer.borderWidth = 0
+        tabBar.tintColor = .myRed
+        //tabBar.backgroundColor = .white
         //tabBar.unselectedItemTintColor = .green
+        tabBar.clipsToBounds = true
         tabBar.isTranslucent = false
         tabBar.selectedItem = forYouTab
         
@@ -57,7 +58,7 @@ class HomePageView: UIView {
     
     func setupTabUnderline() {
         tabUnderline = UIView()
-        tabUnderline.backgroundColor = .myDarkRed
+        tabUnderline.backgroundColor = .myRed
         self.addSubviewToView(subview: tabUnderline)
     }
     
@@ -71,7 +72,7 @@ class HomePageView: UIView {
     func setupButtonDateFilter() {
         buttonDateFilter = UIButton(type: .roundedRect)
         buttonDateFilter.setImage(UIImage(systemName: "calendar"), for: .normal)
-        buttonDateFilter.setTitle("Select Date", for: .normal)
+        buttonDateFilter.setTitle("Select Dates", for: .normal)
         self.setupFilterButtons(button: buttonDateFilter)
     }
     
@@ -91,7 +92,7 @@ class HomePageView: UIView {
         button.layer.borderWidth = 1
         //button.layer.cornerRadius = 10
         //button.layer.masksToBounds = true
-        button.contentEdgeInsets = UIEdgeInsets(top: 5,left: 5,bottom: 5,right: 5)
+        //button.contentEdgeInsets = UIEdgeInsets(top: 5,left: 5,bottom: 5,right: 5)
         button.translatesAutoresizingMaskIntoConstraints = false
         self.filterButtonsView.addSubview(button)
     }
@@ -105,11 +106,14 @@ class HomePageView: UIView {
     func initConstraints(){
         NSLayoutConstraint.activate([
             tabBar.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            tabBar.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor),
+            tabBar.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            tabBar.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            tabBar.heightAnchor.constraint(equalToConstant: 28),
             
             filterButtonsView.topAnchor.constraint(equalTo: self.tabBar.bottomAnchor, constant: 16),
             filterButtonsView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
             filterButtonsView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            filterButtonsView.heightAnchor.constraint(equalToConstant: 32),
             
             dummyLabel.topAnchor.constraint(equalTo: self.filterButtonsView.bottomAnchor, constant: 32),
             dummyLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 32)
@@ -123,6 +127,7 @@ class HomePageView: UIView {
     func constraintsForFilters() {
         NSLayoutConstraint.activate([
             buttonDateFilter.topAnchor.constraint(equalTo: self.filterButtonsView.topAnchor),
+            buttonDateFilter.bottomAnchor.constraint(equalTo: self.filterButtonsView.bottomAnchor),
             buttonDateFilter.leadingAnchor.constraint(equalTo: self.filterButtonsView.leadingAnchor, constant: 32),
             buttonDateFilter.trailingAnchor.constraint(equalTo: self.filterButtonsView.centerXAnchor),
             buttonCategoryFilter.topAnchor.constraint(equalTo: self.buttonDateFilter.topAnchor),

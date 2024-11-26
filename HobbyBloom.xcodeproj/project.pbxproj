@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,8 @@
 		299C16A02CD537BC009F0430 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 299C169F2CD537BC009F0430 /* Base */; };
 		299C16A22CD537BD009F0430 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 299C16A12CD537BD009F0430 /* Assets.xcassets */; };
 		299C16A52CD537BD009F0430 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 299C16A42CD537BD009F0430 /* Base */; };
+		29A10BAD2CF39EA100C44A30 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A10BAC2CF39EA100C44A30 /* NotificationNames.swift */; };
+		29A10BAF2CF3C35D00C44A30 /* FilterButtonsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A10BAE2CF3C35D00C44A30 /* FilterButtonsManager.swift */; };
 		29FBFAC02CDD36CA00F8EC88 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FBFABF2CDD36CA00F8EC88 /* HomePageView.swift */; };
 		29FBFAC22CDD36E100F8EC88 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FBFAC12CDD36E100F8EC88 /* HomePageViewController.swift */; };
 		3F1EFF2B2CF0F47200503EDB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F1EFF2A2CF0F47200503EDB /* GoogleService-Info.plist */; };
@@ -47,6 +49,8 @@
 		299C16A12CD537BD009F0430 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		299C16A42CD537BD009F0430 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		299C16A62CD537BD009F0430 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29A10BAC2CF39EA100C44A30 /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
+		29A10BAE2CF3C35D00C44A30 /* FilterButtonsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonsManager.swift; sourceTree = "<group>"; };
 		29FBFABF2CDD36CA00F8EC88 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		29FBFAC12CDD36E100F8EC88 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		3F1EFF2A2CF0F47200503EDB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -56,6 +60,12 @@
 		3FA76C5C2CED3C110086F19F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3FA76C5E2CED3C380086F19F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D5A8669F2CFDE40200B5CE0E /* Login */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Login; sourceTree = "<group>"; };
+		D5A866A32CFDE42600B5CE0E /* Quiz */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Quiz; sourceTree = "<group>"; };
+		D5A866AA2CFDE45B00B5CE0E /* Register */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Register; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		299C16922CD537BC009F0430 /* Frameworks */ = {
@@ -108,13 +118,15 @@
 		299C16972CD537BC009F0430 /* HobbyBloom */ = {
 			isa = PBXGroup;
 			children = (
+				D5A866AA2CFDE45B00B5CE0E /* Register */,
+				D5A866A32CFDE42600B5CE0E /* Quiz */,
+				D5A8669F2CFDE40200B5CE0E /* Login */,
 				299C16982CD537BC009F0430 /* AppDelegate.swift */,
 				299C169A2CD537BC009F0430 /* SceneDelegate.swift */,
 				299C169C2CD537BC009F0430 /* ViewController.swift */,
 				3F1EFF2A2CF0F47200503EDB /* GoogleService-Info.plist */,
 				3F82805B2CF0F05600A70E7C /* Edit Profile */,
-				298BBAD62CEBAC7B0004AF10 /* Colors.swift */,
-				295F094F2CF1028E00926C23 /* Categories.swift */,
+				29A10BAB2CF39B1200C44A30 /* Utils */,
 				29FBFAC32CDD36E900F8EC88 /* Home Page */,
 				299C169E2CD537BC009F0430 /* Main.storyboard */,
 				299C16A12CD537BD009F0430 /* Assets.xcassets */,
@@ -125,11 +137,22 @@
 			path = HobbyBloom;
 			sourceTree = "<group>";
 		};
+		29A10BAB2CF39B1200C44A30 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				298BBAD62CEBAC7B0004AF10 /* Colors.swift */,
+				295F094F2CF1028E00926C23 /* Categories.swift */,
+				29A10BAC2CF39EA100C44A30 /* NotificationNames.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		29FBFAC32CDD36E900F8EC88 /* Home Page */ = {
 			isa = PBXGroup;
 			children = (
 				29FBFABF2CDD36CA00F8EC88 /* HomePageView.swift */,
 				29FBFAC12CDD36E100F8EC88 /* HomePageViewController.swift */,
+				29A10BAE2CF3C35D00C44A30 /* FilterButtonsManager.swift */,
 				295F094E2CEFAE3C00926C23 /* Category Filter */,
 				295F09492CEF9E6300926C23 /* Date Filter Page */,
 			);
@@ -169,6 +192,11 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D5A8669F2CFDE40200B5CE0E /* Login */,
+				D5A866A32CFDE42600B5CE0E /* Quiz */,
+				D5A866AA2CFDE45B00B5CE0E /* Register */,
 			);
 			name = HobbyBloom;
 			productName = HobbyBloom;
@@ -234,6 +262,7 @@
 				3FA76C5B2CED38DA0086F19F /* EditProfileView.swift in Sources */,
 				299C169D2CD537BC009F0430 /* ViewController.swift in Sources */,
 				298BBAD72CEBAC7B0004AF10 /* Colors.swift in Sources */,
+				29A10BAD2CF39EA100C44A30 /* NotificationNames.swift in Sources */,
 				295F094D2CEFAE1F00926C23 /* CategoryFilterViewController.swift in Sources */,
 				295F094B2CEFADCF00926C23 /* CategoryFilterView.swift in Sources */,
 				299C16992CD537BC009F0430 /* AppDelegate.swift in Sources */,
@@ -250,6 +279,7 @@
 				29FBFAC22CDD36E100F8EC88 /* HomePageViewController.swift in Sources */,
 				295F09482CEEE49100926C23 /* DateFilterView.swift in Sources */,
 				299C169B2CD537BC009F0430 /* SceneDelegate.swift in Sources */,
+				29A10BAF2CF3C35D00C44A30 /* FilterButtonsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
