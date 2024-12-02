@@ -11,42 +11,66 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        window = UIWindow(windowScene: windowScene)
+        
+        // Check if the user is logged in
+        if isUserLoggedIn() {
+            // If logged in, setup the main Tab Bar Controller
+            let tabBarController = UITabBarController()
+            let homeVC = HomePageViewController()
+            let profileVC = UINavigationController(rootViewController: ProfileViewController())
+            
+            // Set up tab bar items
+            homeVC.tabBarItem = UITabBarItem(
+                title: "Home",
+                image: UIImage(systemName: "house"),
+                selectedImage: UIImage(systemName: "house.fill")
+            )
+            profileVC.tabBarItem = UITabBarItem(
+                title: "Profile",
+                image: UIImage(systemName: "person"),
+                selectedImage: UIImage(systemName: "person.fill")
+            )
+            
+            tabBarController.viewControllers = [homeVC, profileVC]
+            window?.rootViewController = tabBarController
+        } else {
+            // If not logged in, present the LoginViewController
+            let loginVC = LoginScreenViewController()
+            let navigationController = UINavigationController(rootViewController: loginVC)
+            window?.rootViewController = navigationController
+        }
+        
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
-        // Called as the scene is being released by the system.
-        // This occurs shortly after the scene enters the background, or when its session is discarded.
-        // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+        // Handle the scene being disconnected
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        // Handle the scene becoming active
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
-        // Called when the scene will move from an active state to an inactive state.
-        // This may occur due to temporary interruptions (ex. an incoming phone call).
+        // Handle the scene resigning active
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
-        // Called as the scene transitions from the background to the foreground.
-        // Use this method to undo the changes made on entering the background.
+        // Handle the scene entering foreground
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
+        // Handle the scene entering background
     }
-
-
+    
+    // MARK: - Check if User is Logged In
+    func isUserLoggedIn() -> Bool {
+        // Example check, replace with actual authentication logic
+        let userDefaults = UserDefaults.standard
+        return userDefaults.bool(forKey: "isUserLoggedIn") // Assuming you save this flag upon login
+    }
 }
-
