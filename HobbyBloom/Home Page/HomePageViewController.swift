@@ -31,6 +31,7 @@ class HomePageViewController: UIViewController {
         
         self.homeView.buttonDateFilter.addTarget(self, action: #selector(onButtonDateFilterTapped), for: .touchUpInside)
         self.homeView.buttonCategoryFilter.addTarget(self, action: #selector(onButtonCategoryFilterTapped), for: .touchUpInside)
+        self.homeView.activityButton.addTarget(self, action: #selector(activityButtonTapped), for: .touchUpInside)
         
         notificationCenter.addObserver(
             self,
@@ -49,10 +50,16 @@ class HomePageViewController: UIViewController {
             selector: #selector(notificationReceivedForPersonalitySelected(notification:)),
             name: .personalityToFilterSelected,
             object: nil)
-        self.homeView.activityButton.addTarget(self, action: #selector(activityButtonTapped), for: .touchUpInside)
 
         
     }
+    
+    @objc func activityButtonTapped() {
+        print("Navigation Controller: \(String(describing: navigationController))")
+            let activityDetailsVC = ActivityDetailsViewController()
+            activityDetailsVC.activityID = "activity"
+            navigationController?.pushViewController(activityDetailsVC, animated: true)
+        }
 
     
     override func viewDidLayoutSubviews() {
@@ -60,12 +67,6 @@ class HomePageViewController: UIViewController {
         updateLinePosition()
     }
 
-    
-    @objc func activityButtonTapped() {
-            let activityDetailsVC = ActivityDetailsViewController()
-            activityDetailsVC.activityID = "activity"
-            navigationController?.pushViewController(activityDetailsVC, animated: true)
-        }
 
 }
 
