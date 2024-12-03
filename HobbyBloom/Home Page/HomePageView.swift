@@ -9,6 +9,7 @@ import UIKit
 
 class HomePageView: UIView {
     
+    var locationButton: UIButton!
     var tabBar: UITabBar!
     var tabUnderline: UIView!
     var filterButtonsView: UIView!
@@ -21,6 +22,7 @@ class HomePageView: UIView {
         super.init(frame: frame)
         self.backgroundColor = .white
         
+        setupLocationButton()
         setupTabBar()
         setupTabUnderline()
         setupFilterButtonsView()
@@ -30,6 +32,14 @@ class HomePageView: UIView {
         self.addSubviewToView(subview: dummyLabel)
         
         initConstraints()
+    }
+    
+    func setupLocationButton() {
+        locationButton = UIButton(type: .system)
+        locationButton.setImage(UIImage(systemName: "mappin"), for: .normal)
+        locationButton.tintColor = .myDarkPurple
+        locationButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        addSubviewToView(subview: locationButton)
     }
     
     func setupTabBar() {
@@ -42,7 +52,7 @@ class HomePageView: UIView {
         
         //tabBar.layer.borderWidth = 0
         tabBar.tintColor = .myRed
-        //tabBar.backgroundColor = .white
+        //tabBar.backgroundColor = .blue
         //tabBar.unselectedItemTintColor = .green
         tabBar.clipsToBounds = true
         tabBar.isTranslucent = false
@@ -52,7 +62,7 @@ class HomePageView: UIView {
     }
     
     func setupTabBarItem(_ item: UITabBarItem) {
-        item.setTitleTextAttributes([.font: UIFont.boldSystemFont(ofSize: 16)], for: .normal)
+        item.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 16, weight: .semibold)], for: .normal)
         //item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -16)
     }
     
@@ -105,10 +115,13 @@ class HomePageView: UIView {
     //MARK: setting up constraints...
     func initConstraints(){
         NSLayoutConstraint.activate([
-            tabBar.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            locationButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            locationButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 32),
+            
+            tabBar.topAnchor.constraint(equalTo: self.locationButton.bottomAnchor, constant: 16),
             tabBar.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
             tabBar.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            tabBar.heightAnchor.constraint(equalToConstant: 28),
+            tabBar.heightAnchor.constraint(equalToConstant: 20),
             
             filterButtonsView.topAnchor.constraint(equalTo: self.tabBar.bottomAnchor, constant: 16),
             filterButtonsView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),

@@ -10,4 +10,5 @@ import Foundation
 class Categories {
     static let interests = ["Festivals & Fairs", "Comedy", "Music", "Food", "Sports", "Workshop", "Virtual", "Party", "Arts & Crafts", "Fitness", "Nature", "Fashion"]
     static let personality = ["Explorer", "Entertainer", "Artist", "Energetic", "Learner"]
+    static let cities = ["Boston", "New York", "Chicago", "Miami", "San Francisco"]
 }
