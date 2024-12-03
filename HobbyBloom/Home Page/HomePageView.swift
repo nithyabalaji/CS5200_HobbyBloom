@@ -25,7 +25,7 @@ class HomePageView: UIView {
         setupTabUnderline()
         setupFilterButtonsView()
         
-        activityButton.setTitle("Annual Fall Fest", for: .normal)
+        activityButton.setTitle("Dummy Activity", for: .normal)
         activityButton.setTitleColor(.white, for: .normal)
         activityButton.backgroundColor = .purple
         activityButton.layer.cornerRadius = 8
