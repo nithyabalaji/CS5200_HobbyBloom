@@ -14,7 +14,7 @@ class HomePageView: UIView {
     var filterButtonsView: UIView!
     var buttonDateFilter: UIButton!
     var buttonCategoryFilter: UIButton!
-    var dummyLabel: UILabel!
+    var activityButton = UIButton()
     var filterButtonsHeightConstraint: NSLayoutConstraint!
 
     override init(frame: CGRect) {
@@ -25,12 +25,16 @@ class HomePageView: UIView {
         setupTabUnderline()
         setupFilterButtonsView()
         
-        dummyLabel = UILabel()
-        dummyLabel.text = "HELLOOOOOOO"
-        self.addSubviewToView(subview: dummyLabel)
-        
+        activityButton.setTitle("Annual Fall Fest", for: .normal)
+        activityButton.setTitleColor(.white, for: .normal)
+        activityButton.backgroundColor = .purple
+        activityButton.layer.cornerRadius = 8
+        activityButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(activityButton)
+                
         initConstraints()
     }
+
     
     func setupTabBar() {
         tabBar = UITabBar()
@@ -115,8 +119,8 @@ class HomePageView: UIView {
             filterButtonsView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
             filterButtonsView.heightAnchor.constraint(equalToConstant: 32),
             
-            dummyLabel.topAnchor.constraint(equalTo: self.filterButtonsView.bottomAnchor, constant: 32),
-            dummyLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 32)
+            activityButton.topAnchor.constraint(equalTo: self.filterButtonsView.bottomAnchor, constant: 32),
+            activityButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 32)
         ])
         
         constraintsForFilters()

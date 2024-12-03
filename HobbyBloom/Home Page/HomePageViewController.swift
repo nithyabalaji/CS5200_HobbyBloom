@@ -49,6 +49,8 @@ class HomePageViewController: UIViewController {
             selector: #selector(notificationReceivedForPersonalitySelected(notification:)),
             name: .personalityToFilterSelected,
             object: nil)
+        self.homeView.activityButton.addTarget(self, action: #selector(activityButtonTapped), for: .touchUpInside)
+
         
     }
 
@@ -57,6 +59,13 @@ class HomePageViewController: UIViewController {
         super.viewDidLayoutSubviews()
         updateLinePosition()
     }
+
+    
+    @objc func activityButtonTapped() {
+            let activityDetailsVC = ActivityDetailsViewController()
+            activityDetailsVC.activityID = "activity"
+            navigationController?.pushViewController(activityDetailsVC, animated: true)
+        }
 
 }
 
