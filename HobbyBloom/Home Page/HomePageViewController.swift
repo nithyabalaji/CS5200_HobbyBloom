@@ -14,6 +14,8 @@ class HomePageViewController: UIViewController {
     var selectedDates = [DateComponents]()
     var selectedInterests = [String]()
     var selectedPersonality: String?
+    let cities = Categories.cities
+    var selectedCity = "Boston"
         
     override func loadView() {
         view = homeView
@@ -24,11 +26,15 @@ class HomePageViewController: UIViewController {
         
         self.homeView.tabBar.delegate = self
         self.updateLinePosition()
+        self.updateLocation(selectedCity)
         
         if self.homeView.tabBar.selectedItem?.tag == 0 {
             self.updateFilterConstraints(showFilters: false)
         }
         
+        updateLocationLabel(self.selectedCity)
+        
+        self.homeView.locationArrowButton.addTarget(self, action: #selector(onLocationButtonTapped), for: .touchUpInside)
         self.homeView.buttonDateFilter.addTarget(self, action: #selector(onButtonDateFilterTapped), for: .touchUpInside)
         self.homeView.buttonCategoryFilter.addTarget(self, action: #selector(onButtonCategoryFilterTapped), for: .touchUpInside)
         
@@ -52,10 +58,48 @@ class HomePageViewController: UIViewController {
         
     }
 
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         updateLinePosition()
+    }
+    
+    @objc private func onLocationButtonTapped() {
+        var menuItems = [UIAction]()
+        for city in cities {
+            let action = UIAction(title: city, handler: { [weak self] _ in
+                self?.updateLocation(city)
+            })
+            menuItems.append(action)
+        }
+        
+        let menu = UIMenu(title: "Choose a new city", children: menuItems)
+        self.homeView.locationArrowButton.menu = menu
+        self.homeView.locationArrowButton.showsMenuAsPrimaryAction = true
+    }
+    
+    private func updateLocation(_ city: String) {
+        updateLocationLabel(city)
+        self.selectedCity = city
+    }
+    
+    private func updateLocationLabel(_ city: String) {
+        let symbolAttachment = NSTextAttachment()
+        let config = UIImage.SymbolConfiguration(pointSize: 16, weight: .regular, scale: .default)
+        symbolAttachment.image = UIImage(systemName: "mappin", withConfiguration: config)?.withTintColor(.myDarkPurple, renderingMode: .alwaysOriginal)
+        symbolAttachment.bounds = CGRect(x: 0, y: -2, width: 16, height: 16)
+        
+        let symbolString = NSAttributedString(attachment: symbolAttachment)
+        
+        let textString = NSAttributedString(string: "Your Location: \(city)", attributes: [
+            .font: UIFont.systemFont(ofSize: 16),
+            .foregroundColor: UIColor.myDarkPurple
+        ])
+        
+        let combinedString = NSMutableAttributedString()
+        combinedString.append(symbolString)
+        combinedString.append(textString)
+        
+        self.homeView.locationLabel.attributedText = combinedString
     }
 
 }
@@ -75,8 +119,8 @@ extension HomePageViewController: UITabBarDelegate {
 
         let tabBarWidth = self.homeView.tabBar.frame.width / CGFloat(items.count)
         let xPosition = CGFloat(index) * tabBarWidth + (tabBarWidth / 3)
-        let lineHeight: CGFloat = 3.0
-        let yPosition = self.homeView.tabBar.frame.height + lineHeight + self.homeView.safeAreaInsets.top
+        let lineHeight: CGFloat = 1.5
+        let yPosition = self.homeView.tabBar.frame.height + lineHeight + self.homeView.safeAreaInsets.top + self.homeView.locationLabel.frame.height + 16
 
         UIView.animate(withDuration: 0.25) { [weak self] in
             self?.homeView.tabUnderline.frame = CGRect(
