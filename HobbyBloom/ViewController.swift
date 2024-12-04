@@ -30,7 +30,7 @@ class ViewController: UITabBarController, UITabBarControllerDelegate {
     
     func setupNavigationBar() {
         //MARK: setting up home tab bar...
-        let tabHome = HomePageViewController()
+        let tabHome = UINavigationController(rootViewController: HomePageViewController())
         let tabHomeBarItem = UITabBarItem(
             title: "Home",
             image: UIImage(systemName: "house"),

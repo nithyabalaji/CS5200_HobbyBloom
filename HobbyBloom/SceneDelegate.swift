@@ -14,6 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
+
         window = UIWindow(windowScene: windowScene)
         
         // Check if the user is logged in
@@ -29,11 +30,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 image: UIImage(systemName: "house"),
                 selectedImage: UIImage(systemName: "house.fill")
             )
+
 //            profileVC.tabBarItem = UITabBarItem(
 //                title: "Profile",
 //                image: UIImage(systemName: "person"),
 //                selectedImage: UIImage(systemName: "person.fill")
 //            )
+
             
             tabBarController.viewControllers = [homeVC]
             window?.rootViewController = tabBarController
@@ -45,6 +48,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         window?.makeKeyAndVisible()
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -1,5 +1,4 @@
-//
-//  HomePageViewController.swift
+// HomePageViewController.swift
 //  HobbyBloom
 //
 //  Created by Nithya Balaji on 11/7/24.
@@ -31,6 +30,7 @@ class HomePageViewController: UIViewController {
         
         self.homeView.buttonDateFilter.addTarget(self, action: #selector(onButtonDateFilterTapped), for: .touchUpInside)
         self.homeView.buttonCategoryFilter.addTarget(self, action: #selector(onButtonCategoryFilterTapped), for: .touchUpInside)
+        self.homeView.dummyButton.addTarget(self, action: #selector(activityButtonTapped), for: .touchUpInside)
         
         notificationCenter.addObserver(
             self,
@@ -51,6 +51,14 @@ class HomePageViewController: UIViewController {
             object: nil)
         
     }
+    
+    @objc func activityButtonTapped() {
+        print("Activity button tapped")
+        let activityDetailsVC = ActivityDetailsViewController()
+        activityDetailsVC.activityID = "activity"
+        navigationController?.pushViewController(activityDetailsVC, animated: true)
+    }
+
 
     
     override func viewDidLayoutSubviews() {
@@ -105,4 +113,3 @@ extension HomePageViewController: UITabBarDelegate {
         self.homeView.layoutIfNeeded()
     }
 }
-
