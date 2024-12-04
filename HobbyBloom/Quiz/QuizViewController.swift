@@ -151,18 +151,7 @@ class QuizViewController: UIViewController {
                     // Show an error label or alert if needed
                 } else {
                     print("Interests saved successfully")
-                    
-                   
-                    
-                    // Navigate to ProfileViewController
-                    if let navigationController = self.navigationController {
-                        if let profileVC = navigationController.viewControllers.first(where: { $0 is ViewController }) {
-                            navigationController.popToViewController(profileVC, animated: true)
-                        } else {
-                            let profileViewController = ViewController()
-                            navigationController.pushViewController(profileViewController, animated: true)
-                        }
-                    }
+                    self.dismiss(animated: true)
                 }
             }
         }

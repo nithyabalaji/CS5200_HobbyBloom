@@ -12,39 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        
-        window = UIWindow(windowScene: windowScene)
-        
-        // Check if the user is logged in
-        if isUserLoggedIn() {
-            // If logged in, setup the main Tab Bar Controller
-            let tabBarController = UITabBarController()
-            let homeVC = HomePageViewController()
-           // let profileVC = UINavigationController(rootViewController: ProfileViewController())
-            
-            // Set up tab bar items
-            homeVC.tabBarItem = UITabBarItem(
-                title: "Home",
-                image: UIImage(systemName: "house"),
-                selectedImage: UIImage(systemName: "house.fill")
-            )
-//            profileVC.tabBarItem = UITabBarItem(
-//                title: "Profile",
-//                image: UIImage(systemName: "person"),
-//                selectedImage: UIImage(systemName: "person.fill")
-//            )
-            
-            tabBarController.viewControllers = [homeVC]
-            window?.rootViewController = tabBarController
-        } else {
-            // If not logged in, present the LoginViewController
-            let loginVC = LoginScreenViewController()
-            let navigationController = UINavigationController(rootViewController: loginVC)
-            window?.rootViewController = navigationController
-        }
-        
-        window?.makeKeyAndVisible()
+        guard let _ = (scene as? UIWindowScene) else { return }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

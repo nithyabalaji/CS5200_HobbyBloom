@@ -1,36 +1,47 @@
-///
-///  ViewController.swift
-///  HobbyBloom
-///
-/// Created by Nithya Balaji on 11/1/24.
-///
+//
+//  ViewController.swift
+//  HobbyBloom
+//
+// Created by Nithya Balaji on 11/1/24.
+//
 
 import UIKit
+import FirebaseAuth
 
 class ViewController: UITabBarController, UITabBarControllerDelegate {
+    
+    var handleAuth: AuthStateDidChangeListenerHandle?
+    var currentUser: FirebaseAuth.User?
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.setupNavigationBar()
+        handleAuth = Auth.auth().addStateDidChangeListener { [weak self] auth, user in
+            guard let self = self else { return }
+            if let user = user {
+                print(user)
+                self.currentUser = user
+                self.setupNavigationBar()
+            } else {
+                self.presentLoginViewController()
+            }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Check if the user is logged in
-        if !isUserLoggedIn() {
-            // If not logged in, show the login screen modally
-            presentLoginViewController()
-        } else {
-            // If logged in, proceed with tab bar setup
-            setupNavigationBar()
-        }
+    
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        Auth.auth().removeStateDidChangeListener(handleAuth!)
     }
     
     func setupNavigationBar() {
         //MARK: setting up home tab bar...
-        let tabHome = HomePageViewController()
+        let homeController = HomePageViewController()
+        homeController.currentUser = self.currentUser
+        let tabHome = UINavigationController(rootViewController: homeController)
         let tabHomeBarItem = UITabBarItem(
             title: "Home",
             image: UIImage(systemName: "house"),
@@ -59,17 +70,10 @@ class ViewController: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.layer.borderColor = UIColor.myDarkPurple.cgColor
     }
     
-    // MARK: - Check if User is Logged In
-    func isUserLoggedIn() -> Bool {
-        // Example check, replace with actual authentication logic
-        let userDefaults = UserDefaults.standard
-        return userDefaults.bool(forKey: "isUserLoggedIn") // Assuming you save this flag upon login
-    }
-    
     // MARK: - Present Login Screen Modally
     func presentLoginViewController() {
-        let loginViewController = LoginScreenViewController()
-        let navigationController = UINavigationController(rootViewController: loginViewController)
-        present(navigationController, animated: true, completion: nil)
+        let loginViewController = UINavigationController(rootViewController: LoginScreenViewController())
+        loginViewController.modalPresentationStyle = .fullScreen
+        present(loginViewController, animated: true, completion: nil)
     }
 }
