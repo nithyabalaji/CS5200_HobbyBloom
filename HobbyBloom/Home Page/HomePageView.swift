@@ -9,12 +9,14 @@ import UIKit
 
 class HomePageView: UIView {
     
-    var locationButton: UIButton!
+    var locationLabel: UILabel!
+    var locationArrowButton: UIButton!
     var tabBar: UITabBar!
     var tabUnderline: UIView!
     var filterButtonsView: UIView!
     var buttonDateFilter: UIButton!
     var buttonCategoryFilter: UIButton!
+    var filterButtonsLine: UIView!
     var dummyLabel: UILabel!
     var filterButtonsHeightConstraint: NSLayoutConstraint!
 
@@ -35,11 +37,14 @@ class HomePageView: UIView {
     }
     
     func setupLocationButton() {
-        locationButton = UIButton(type: .system)
-        locationButton.setImage(UIImage(systemName: "mappin"), for: .normal)
-        locationButton.tintColor = .myDarkPurple
-        locationButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        addSubviewToView(subview: locationButton)
+        locationLabel = UILabel()
+        addSubviewToView(subview: locationLabel)
+        
+        let config = UIImage.SymbolConfiguration(pointSize: 12, weight: .regular, scale: .default)
+        locationArrowButton = UIButton(type: .system)
+        locationArrowButton.setImage(UIImage(systemName: "chevron.down", withConfiguration: config), for: .normal)
+        locationArrowButton.tintColor = .myDarkPurple
+        addSubviewToView(subview: locationArrowButton)
     }
     
     func setupTabBar() {
@@ -77,19 +82,27 @@ class HomePageView: UIView {
         self.addSubviewToView(subview: filterButtonsView)
         setupButtonDateFilter()
         setupButtonCategoryFilter()
+        filterButtonsLine = UIView()
+        filterButtonsLine.backgroundColor = .lightGray
+        filterButtonsLine.translatesAutoresizingMaskIntoConstraints = false
+        self.filterButtonsView.addSubview(filterButtonsLine)
     }
     
     func setupButtonDateFilter() {
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 16, weight: .regular, scale: .default)
         buttonDateFilter = UIButton(type: .roundedRect)
-        buttonDateFilter.setImage(UIImage(systemName: "calendar"), for: .normal)
+        buttonDateFilter.setImage(UIImage(systemName: "calendar", withConfiguration: imageConfig), for: .normal)
         buttonDateFilter.setTitle("Select Dates", for: .normal)
+        buttonDateFilter.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         self.setupFilterButtons(button: buttonDateFilter)
     }
     
     func setupButtonCategoryFilter() {
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 16, weight: .regular, scale: .default)
         buttonCategoryFilter = UIButton(type: .roundedRect)
-        buttonCategoryFilter.setImage(UIImage(systemName: "line.3.horizontal.decrease.circle"), for: .normal)
+        buttonCategoryFilter.setImage(UIImage(systemName: "line.3.horizontal.decrease", withConfiguration: imageConfig), for: .normal)
         buttonCategoryFilter.setTitle("Select Categories", for: .normal)
+        buttonCategoryFilter.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         self.setupFilterButtons(button: buttonCategoryFilter)
     }
     
@@ -98,9 +111,10 @@ class HomePageView: UIView {
         //button.setTitleColor(.darkGray, for: .normal)
         button.tintColor = .darkGray
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        button.layer.borderColor = UIColor.lightGray.cgColor
-        button.layer.borderWidth = 1
-        //button.layer.cornerRadius = 10
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
+        //button.layer.borderColor = UIColor.lightGray.cgColor
+        //button.layer.borderWidth = 1
+        button.layer.cornerRadius = 10
         //button.layer.masksToBounds = true
         //button.contentEdgeInsets = UIEdgeInsets(top: 5,left: 5,bottom: 5,right: 5)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -115,10 +129,12 @@ class HomePageView: UIView {
     //MARK: setting up constraints...
     func initConstraints(){
         NSLayoutConstraint.activate([
-            locationButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            locationButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 32),
+            locationLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            locationLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 32),
+            locationArrowButton.centerYAnchor.constraint(equalTo: self.locationLabel.centerYAnchor),
+            locationArrowButton.leadingAnchor.constraint(equalTo: self.locationLabel.trailingAnchor, constant: 3),
             
-            tabBar.topAnchor.constraint(equalTo: self.locationButton.bottomAnchor, constant: 16),
+            tabBar.topAnchor.constraint(equalTo: self.locationLabel.bottomAnchor, constant: 16),
             tabBar.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
             tabBar.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
             tabBar.heightAnchor.constraint(equalToConstant: 20),
@@ -126,7 +142,6 @@ class HomePageView: UIView {
             filterButtonsView.topAnchor.constraint(equalTo: self.tabBar.bottomAnchor, constant: 16),
             filterButtonsView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
             filterButtonsView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            filterButtonsView.heightAnchor.constraint(equalToConstant: 32),
             
             dummyLabel.topAnchor.constraint(equalTo: self.filterButtonsView.bottomAnchor, constant: 32),
             dummyLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 32)
@@ -147,6 +162,10 @@ class HomePageView: UIView {
             buttonCategoryFilter.leadingAnchor.constraint(equalTo: self.buttonDateFilter.trailingAnchor),
             buttonCategoryFilter.trailingAnchor.constraint(equalTo: self.filterButtonsView.trailingAnchor, constant: -32),
             buttonDateFilter.heightAnchor.constraint(equalTo: buttonCategoryFilter.heightAnchor),
+            filterButtonsLine.centerXAnchor.constraint(equalTo: self.filterButtonsView.centerXAnchor),
+            filterButtonsLine.topAnchor.constraint(equalTo: self.buttonDateFilter.topAnchor, constant: 4),
+            filterButtonsLine.bottomAnchor.constraint(equalTo: self.buttonDateFilter.bottomAnchor, constant: -4),
+            filterButtonsLine.widthAnchor.constraint(equalToConstant: 1)
         ])
     }
     
