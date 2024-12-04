@@ -1,10 +1,3 @@
-//
-//  QuizView.swift
-//  HobbyBloom
-//
-//  Created by Bhumi Shah on 12/2/24.
-//
-
 import UIKit
 
 class QuizView: UIView {
@@ -38,7 +31,7 @@ class QuizView: UIView {
     let saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Save", for: .normal)
-        button.backgroundColor = .blue
+        button.backgroundColor = .myPurple // Updated to use myPurple color
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -123,7 +116,7 @@ class QuizView: UIView {
     private func createOptionButton(title: String) -> UIButton {
         let button = UIButton(type: .system)
         button.setTitle(title, for: .normal)
-        button.backgroundColor = .lightGray
+        button.backgroundColor = .myLightPurple // Updated to use myLightPurple color
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 6 // Smaller corner radius
         button.translatesAutoresizingMaskIntoConstraints = false

@@ -17,7 +17,8 @@ class RegisterScreenViewController: UIViewController, CLLocationManagerDelegate 
         super.viewDidLoad()
         
         registerScreen.takeQuizButton.addTarget(self, action: #selector(onTakeQuizButtonTapped), for: .touchUpInside)
-        
+        registerScreen.backButton?.addTarget(self, action: #selector(onBackButtonTapped), for: .touchUpInside)
+
         // Request location access
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -26,6 +27,13 @@ class RegisterScreenViewController: UIViewController, CLLocationManagerDelegate 
         locationManager.startUpdatingLocation()
         // Remove password hiding
            registerScreen.passwordTextField.isSecureTextEntry = false  // Set to false to display password in plain text
+    }
+    @objc func onBackButtonTapped() {
+       
+        let loginController = LoginScreenViewController()
+        let navController = UINavigationController(rootViewController: loginController)
+        navController.modalPresentationStyle = .fullScreen
+        present(navController, animated: true, completion: nil)
     }
     
     @objc func onTakeQuizButtonTapped() {

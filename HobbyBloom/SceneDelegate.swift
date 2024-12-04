@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // If logged in, setup the main Tab Bar Controller
             let tabBarController = UITabBarController()
             let homeVC = HomePageViewController()
-            let profileVC = UINavigationController(rootViewController: ProfileViewController())
+           // let profileVC = UINavigationController(rootViewController: ProfileViewController())
             
             // Set up tab bar items
             homeVC.tabBarItem = UITabBarItem(
@@ -29,13 +29,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 image: UIImage(systemName: "house"),
                 selectedImage: UIImage(systemName: "house.fill")
             )
-            profileVC.tabBarItem = UITabBarItem(
-                title: "Profile",
-                image: UIImage(systemName: "person"),
-                selectedImage: UIImage(systemName: "person.fill")
-            )
+//            profileVC.tabBarItem = UITabBarItem(
+//                title: "Profile",
+//                image: UIImage(systemName: "person"),
+//                selectedImage: UIImage(systemName: "person.fill")
+//            )
             
-            tabBarController.viewControllers = [homeVC, profileVC]
+            tabBarController.viewControllers = [homeVC]
             window?.rootViewController = tabBarController
         } else {
             // If not logged in, present the LoginViewController
