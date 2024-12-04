@@ -1,4 +1,3 @@
-//
 //  HomePageView.swift
 //  HobbyBloom
 //
@@ -14,7 +13,7 @@ class HomePageView: UIView {
     var filterButtonsView: UIView!
     var buttonDateFilter: UIButton!
     var buttonCategoryFilter: UIButton!
-    var dummyLabel: UILabel!
+    var dummyButton: UIButton!
     var filterButtonsHeightConstraint: NSLayoutConstraint!
 
     override init(frame: CGRect) {
@@ -24,10 +23,8 @@ class HomePageView: UIView {
         setupTabBar()
         setupTabUnderline()
         setupFilterButtonsView()
+        setupDummyButton()
         
-        dummyLabel = UILabel()
-        dummyLabel.text = "HELLOOOOOOO"
-        self.addSubviewToView(subview: dummyLabel)
         
         initConstraints()
     }
@@ -83,6 +80,12 @@ class HomePageView: UIView {
         self.setupFilterButtons(button: buttonCategoryFilter)
     }
     
+    func setupDummyButton() {
+        dummyButton = UIButton(type: .roundedRect)
+        dummyButton.setTitle("Dummy Activity", for: .normal)
+        self.addSubviewToView(subview: dummyButton)
+    }
+    
     func setupFilterButtons(button: UIButton) {
         button.backgroundColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1)
         //button.setTitleColor(.darkGray, for: .normal)
@@ -115,8 +118,8 @@ class HomePageView: UIView {
             filterButtonsView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
             filterButtonsView.heightAnchor.constraint(equalToConstant: 32),
             
-            dummyLabel.topAnchor.constraint(equalTo: self.filterButtonsView.bottomAnchor, constant: 32),
-            dummyLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 32)
+            dummyButton.topAnchor.constraint(equalTo: self.filterButtonsView.bottomAnchor, constant: 32),
+            dummyButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 32)
         ])
         
         constraintsForFilters()

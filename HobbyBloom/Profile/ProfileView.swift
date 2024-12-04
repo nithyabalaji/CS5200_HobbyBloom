@@ -10,6 +10,7 @@ import UIKit
 class ProfileView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     var profileImageView = UIImageView()
+    
     var nameLabel = UILabel()
     var locationLabel = UILabel()
     var emailLabel = UILabel()

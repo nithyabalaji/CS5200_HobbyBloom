@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,20 @@
 		29FBFAC02CDD36CA00F8EC88 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FBFABF2CDD36CA00F8EC88 /* HomePageView.swift */; };
 		29FBFAC22CDD36E100F8EC88 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FBFAC12CDD36E100F8EC88 /* HomePageViewController.swift */; };
 		3F1EFF2B2CF0F47200503EDB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F1EFF2A2CF0F47200503EDB /* GoogleService-Info.plist */; };
+		3F816E502CFF938000284000 /* PhotoFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F816E4F2CFF938000284000 /* PhotoFirebaseManager.swift */; };
+		3F816E522CFF938A00284000 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F816E512CFF938A00284000 /* PhotoManager.swift */; };
+		3F816E542CFF93C900284000 /* ImageViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F816E532CFF93C900284000 /* ImageViewUtils.swift */; };
+		3F816E562CFF93E200284000 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F816E552CFF93E200284000 /* Comment.swift */; };
+		3F816E7C2CFFAD2200284000 /* ActivityDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F816E7B2CFFAD2200284000 /* ActivityDetailsView.swift */; };
+		3F816E7E2CFFAD8100284000 /* ActivityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F816E7D2CFFAD8100284000 /* ActivityDetailsViewController.swift */; };
+		3F816E8E2CFFE1AD00284000 /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F816E8B2CFFE1AD00284000 /* LoginScreenView.swift */; };
+		3F816E8F2CFFE1AD00284000 /* LoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F816E8C2CFFE1AD00284000 /* LoginScreenViewController.swift */; };
+		3F816E932CFFE1B400284000 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F816E902CFFE1B400284000 /* QuizView.swift */; };
+		3F816E942CFFE1B400284000 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F816E912CFFE1B400284000 /* QuizViewController.swift */; };
+		3F816E982CFFE1B800284000 /* RegisterScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F816E952CFFE1B800284000 /* RegisterScreenView.swift */; };
+		3F816E992CFFE1B800284000 /* RegisterScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F816E962CFFE1B800284000 /* RegisterScreenViewController.swift */; };
+		3F816E9B2CFFE94800284000 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F816E9A2CFFE94800284000 /* CommentsView.swift */; };
+		3F816E9D2CFFF62500284000 /* comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F816E9C2CFFF62500284000 /* comments.swift */; };
 		3F8280562CF0EE4500A70E7C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3F8280552CF0EE4500A70E7C /* FirebaseAuth */; };
 		3F8280582CF0EE4500A70E7C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3F8280572CF0EE4500A70E7C /* FirebaseFirestore */; };
 		3F82805A2CF0EE4500A70E7C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3F8280592CF0EE4500A70E7C /* FirebaseStorage */; };
@@ -54,18 +68,26 @@
 		29FBFABF2CDD36CA00F8EC88 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		29FBFAC12CDD36E100F8EC88 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		3F1EFF2A2CF0F47200503EDB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3F816E4F2CFF938000284000 /* PhotoFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFirebaseManager.swift; sourceTree = "<group>"; };
+		3F816E512CFF938A00284000 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
+		3F816E532CFF93C900284000 /* ImageViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewUtils.swift; sourceTree = "<group>"; };
+		3F816E552CFF93E200284000 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		3F816E7B2CFFAD2200284000 /* ActivityDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailsView.swift; sourceTree = "<group>"; };
+		3F816E7D2CFFAD8100284000 /* ActivityDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailsViewController.swift; sourceTree = "<group>"; };
+		3F816E8B2CFFE1AD00284000 /* LoginScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenView.swift; sourceTree = "<group>"; };
+		3F816E8C2CFFE1AD00284000 /* LoginScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewController.swift; sourceTree = "<group>"; };
+		3F816E902CFFE1B400284000 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
+		3F816E912CFFE1B400284000 /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
+		3F816E952CFFE1B800284000 /* RegisterScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreenView.swift; sourceTree = "<group>"; };
+		3F816E962CFFE1B800284000 /* RegisterScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreenViewController.swift; sourceTree = "<group>"; };
+		3F816E9A2CFFE94800284000 /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
+		3F816E9C2CFFF62500284000 /* comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = comments.swift; sourceTree = "<group>"; };
 		3F8E204D2CEFA02A0056754E /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		3F8E88CA2CEFE371002DBB0D /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		3FA76C5A2CED38DA0086F19F /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		3FA76C5C2CED3C110086F19F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3FA76C5E2CED3C380086F19F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		D5A8669F2CFDE40200B5CE0E /* Login */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Login; sourceTree = "<group>"; };
-		D5A866A32CFDE42600B5CE0E /* Quiz */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Quiz; sourceTree = "<group>"; };
-		D5A866AA2CFDE45B00B5CE0E /* Register */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Register; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		299C16922CD537BC009F0430 /* Frameworks */ = {
@@ -118,12 +140,13 @@
 		299C16972CD537BC009F0430 /* HobbyBloom */ = {
 			isa = PBXGroup;
 			children = (
-				D5A866AA2CFDE45B00B5CE0E /* Register */,
-				D5A866A32CFDE42600B5CE0E /* Quiz */,
-				D5A8669F2CFDE40200B5CE0E /* Login */,
+				3F816E972CFFE1B800284000 /* Register */,
+				3F816E922CFFE1B400284000 /* Quiz */,
+				3F816E8D2CFFE1AD00284000 /* Login */,
 				299C16982CD537BC009F0430 /* AppDelegate.swift */,
 				299C169A2CD537BC009F0430 /* SceneDelegate.swift */,
 				299C169C2CD537BC009F0430 /* ViewController.swift */,
+				3F816E532CFF93C900284000 /* ImageViewUtils.swift */,
 				3F1EFF2A2CF0F47200503EDB /* GoogleService-Info.plist */,
 				3F82805B2CF0F05600A70E7C /* Edit Profile */,
 				29A10BAB2CF39B1200C44A30 /* Utils */,
@@ -132,7 +155,11 @@
 				299C16A12CD537BD009F0430 /* Assets.xcassets */,
 				299C16A32CD537BD009F0430 /* LaunchScreen.storyboard */,
 				299C16A62CD537BD009F0430 /* Info.plist */,
+				3F816E552CFF93E200284000 /* Comment.swift */,
 				3F82805C2CF0F06D00A70E7C /* Profile */,
+				3F816E7B2CFFAD2200284000 /* ActivityDetailsView.swift */,
+				3F816E9A2CFFE94800284000 /* CommentsView.swift */,
+				3F816E7D2CFFAD8100284000 /* ActivityDetailsViewController.swift */,
 			);
 			path = HobbyBloom;
 			sourceTree = "<group>";
@@ -155,14 +182,44 @@
 				29A10BAE2CF3C35D00C44A30 /* FilterButtonsManager.swift */,
 				295F094E2CEFAE3C00926C23 /* Category Filter */,
 				295F09492CEF9E6300926C23 /* Date Filter Page */,
+				3F816E9C2CFFF62500284000 /* comments.swift */,
 			);
 			path = "Home Page";
+			sourceTree = "<group>";
+		};
+		3F816E8D2CFFE1AD00284000 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3F816E8B2CFFE1AD00284000 /* LoginScreenView.swift */,
+				3F816E8C2CFFE1AD00284000 /* LoginScreenViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		3F816E922CFFE1B400284000 /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				3F816E902CFFE1B400284000 /* QuizView.swift */,
+				3F816E912CFFE1B400284000 /* QuizViewController.swift */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
+		3F816E972CFFE1B800284000 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				3F816E952CFFE1B800284000 /* RegisterScreenView.swift */,
+				3F816E962CFFE1B800284000 /* RegisterScreenViewController.swift */,
+			);
+			path = Register;
 			sourceTree = "<group>";
 		};
 		3F82805B2CF0F05600A70E7C /* Edit Profile */ = {
 			isa = PBXGroup;
 			children = (
 				3FA76C5A2CED38DA0086F19F /* EditProfileView.swift */,
+				3F816E4F2CFF938000284000 /* PhotoFirebaseManager.swift */,
+				3F816E512CFF938A00284000 /* PhotoManager.swift */,
 				3F8E204D2CEFA02A0056754E /* EditProfileViewController.swift */,
 			);
 			path = "Edit Profile";
@@ -192,11 +249,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				D5A8669F2CFDE40200B5CE0E /* Login */,
-				D5A866A32CFDE42600B5CE0E /* Quiz */,
-				D5A866AA2CFDE45B00B5CE0E /* Register */,
 			);
 			name = HobbyBloom;
 			productName = HobbyBloom;
@@ -262,24 +314,38 @@
 				3FA76C5B2CED38DA0086F19F /* EditProfileView.swift in Sources */,
 				299C169D2CD537BC009F0430 /* ViewController.swift in Sources */,
 				298BBAD72CEBAC7B0004AF10 /* Colors.swift in Sources */,
+				3F816E502CFF938000284000 /* PhotoFirebaseManager.swift in Sources */,
 				29A10BAD2CF39EA100C44A30 /* NotificationNames.swift in Sources */,
 				295F094D2CEFAE1F00926C23 /* CategoryFilterViewController.swift in Sources */,
+				3F816E8E2CFFE1AD00284000 /* LoginScreenView.swift in Sources */,
+				3F816E8F2CFFE1AD00284000 /* LoginScreenViewController.swift in Sources */,
 				295F094B2CEFADCF00926C23 /* CategoryFilterView.swift in Sources */,
 				299C16992CD537BC009F0430 /* AppDelegate.swift in Sources */,
+				3F816E932CFFE1B400284000 /* QuizView.swift in Sources */,
+				3F816E942CFFE1B400284000 /* QuizViewController.swift in Sources */,
 				29FBFAC02CDD36CA00F8EC88 /* HomePageView.swift in Sources */,
 				295F09502CF1028E00926C23 /* Categories.swift in Sources */,
 				295F09462CEEE48100926C23 /* DateFilterViewController.swift in Sources */,
 				29FBFAC22CDD36E100F8EC88 /* HomePageViewController.swift in Sources */,
 				295F09482CEEE49100926C23 /* DateFilterView.swift in Sources */,
+				3F816E522CFF938A00284000 /* PhotoManager.swift in Sources */,
+				3F816E9D2CFFF62500284000 /* comments.swift in Sources */,
+				3F816E982CFFE1B800284000 /* RegisterScreenView.swift in Sources */,
+				3F816E992CFFE1B800284000 /* RegisterScreenViewController.swift in Sources */,
 				3FA76C5F2CED3C380086F19F /* ProfileViewController.swift in Sources */,
 				29FBFAC22CDD36E100F8EC88 /* HomePageViewController.swift in Sources */,
 				3F8E88CB2CEFE372002DBB0D /* PaddingLabel.swift in Sources */,
 				3F8E204E2CEFA02A0056754E /* EditProfileViewController.swift in Sources */,
+				3F816E7C2CFFAD2200284000 /* ActivityDetailsView.swift in Sources */,
+				3F816E7E2CFFAD8100284000 /* ActivityDetailsViewController.swift in Sources */,
+				3F816E9B2CFFE94800284000 /* CommentsView.swift in Sources */,
 				295F09462CEEE48100926C23 /* DateFilterViewController.swift in Sources */,
 				29FBFAC22CDD36E100F8EC88 /* HomePageViewController.swift in Sources */,
 				295F09482CEEE49100926C23 /* DateFilterView.swift in Sources */,
 				299C169B2CD537BC009F0430 /* SceneDelegate.swift in Sources */,
+				3F816E562CFF93E200284000 /* Comment.swift in Sources */,
 				29A10BAF2CF3C35D00C44A30 /* FilterButtonsManager.swift in Sources */,
+				3F816E542CFF93C900284000 /* ImageViewUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
