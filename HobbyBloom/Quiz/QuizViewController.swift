@@ -152,18 +152,14 @@ class QuizViewController: UIViewController {
                 } else {
                     print("Interests saved successfully")
                     
-                    // If navigationController is available, push to ProfileViewController
-                    if let navigationController = self.navigationController,
-                       let mainViewController = navigationController.viewControllers.first as? ViewController {
-                        
-                    }
+                   
                     
                     // Navigate to ProfileViewController
                     if let navigationController = self.navigationController {
-                        if let profileVC = navigationController.viewControllers.first(where: { $0 is ProfileViewController }) {
+                        if let profileVC = navigationController.viewControllers.first(where: { $0 is ViewController }) {
                             navigationController.popToViewController(profileVC, animated: true)
                         } else {
-                            let profileViewController = ProfileViewController()
+                            let profileViewController = ViewController()
                             navigationController.pushViewController(profileViewController, animated: true)
                         }
                     }
