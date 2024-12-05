@@ -8,7 +8,9 @@ class QuizView: UIView {
         "Would you rather camp in the wilderness or party all night in the city?",
         "Would you rather attend a live concert or a fashion show?",
         "Would you rather try a food-tasting experience or laugh at a live comedy show?",
-        "Would you rather attend an in-person workshop or learn something new through a virtual class?"
+        "Would you rather attend an in-person workshop or learn something new through a virtual class?",
+        "Are you a ",
+        "Who do you think you best suited to be?",
     ]
     
     let answerOptions = [
@@ -17,7 +19,9 @@ class QuizView: UIView {
         ["Nature", "Party"],
         ["Music", "Fashion"],
         ["Food", "Comedy"],
-        ["Workshop", "Virtual"]
+        ["Workshop", "Virtual"],
+        ["Explorer", "Learner"],
+        ["Entertainer", "Energetic"]
     ]
     
     var answerButtons = [[UIButton]]() // Array to hold buttons for each question

@@ -29,6 +29,9 @@
 		3F82805A2CF0EE4500A70E7C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3F8280592CF0EE4500A70E7C /* FirebaseStorage */; };
 		3F8E204E2CEFA02A0056754E /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E204D2CEFA02A0056754E /* EditProfileViewController.swift */; };
 		3F8E88CB2CEFE372002DBB0D /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E88CA2CEFE371002DBB0D /* PaddingLabel.swift */; };
+		3F96312E2D00E97600FFB683 /* PhotoFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F96312D2D00E97600FFB683 /* PhotoFirebaseManager.swift */; };
+		3F9631302D00E99900FFB683 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F96312F2D00E99900FFB683 /* PhotoManager.swift */; };
+		3F9631322D00E9D300FFB683 /* ImageViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9631312D00E9D300FFB683 /* ImageViewUtils.swift */; };
 		3FA76C5B2CED38DA0086F19F /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA76C5A2CED38DA0086F19F /* EditProfileView.swift */; };
 		3FA76C5D2CED3C110086F19F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA76C5C2CED3C110086F19F /* ProfileView.swift */; };
 		3FA76C5F2CED3C380086F19F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA76C5E2CED3C380086F19F /* ProfileViewController.swift */; };
@@ -56,6 +59,9 @@
 		3F1EFF2A2CF0F47200503EDB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3F8E204D2CEFA02A0056754E /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		3F8E88CA2CEFE371002DBB0D /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		3F96312D2D00E97600FFB683 /* PhotoFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFirebaseManager.swift; sourceTree = "<group>"; };
+		3F96312F2D00E99900FFB683 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
+		3F9631312D00E9D300FFB683 /* ImageViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewUtils.swift; sourceTree = "<group>"; };
 		3FA76C5A2CED38DA0086F19F /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		3FA76C5C2CED3C110086F19F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3FA76C5E2CED3C380086F19F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +129,7 @@
 				D5A8669F2CFDE40200B5CE0E /* Login */,
 				299C16982CD537BC009F0430 /* AppDelegate.swift */,
 				299C169A2CD537BC009F0430 /* SceneDelegate.swift */,
+				3F9631312D00E9D300FFB683 /* ImageViewUtils.swift */,
 				299C169C2CD537BC009F0430 /* ViewController.swift */,
 				3F1EFF2A2CF0F47200503EDB /* GoogleService-Info.plist */,
 				3F82805B2CF0F05600A70E7C /* Edit Profile */,
@@ -164,6 +171,8 @@
 			children = (
 				3FA76C5A2CED38DA0086F19F /* EditProfileView.swift */,
 				3F8E204D2CEFA02A0056754E /* EditProfileViewController.swift */,
+				3F96312D2D00E97600FFB683 /* PhotoFirebaseManager.swift */,
+				3F96312F2D00E99900FFB683 /* PhotoManager.swift */,
 			);
 			path = "Edit Profile";
 			sourceTree = "<group>";
@@ -262,6 +271,7 @@
 				3FA76C5B2CED38DA0086F19F /* EditProfileView.swift in Sources */,
 				299C169D2CD537BC009F0430 /* ViewController.swift in Sources */,
 				298BBAD72CEBAC7B0004AF10 /* Colors.swift in Sources */,
+				3F96312E2D00E97600FFB683 /* PhotoFirebaseManager.swift in Sources */,
 				29A10BAD2CF39EA100C44A30 /* NotificationNames.swift in Sources */,
 				295F094D2CEFAE1F00926C23 /* CategoryFilterViewController.swift in Sources */,
 				295F094B2CEFADCF00926C23 /* CategoryFilterView.swift in Sources */,
@@ -271,6 +281,7 @@
 				295F09462CEEE48100926C23 /* DateFilterViewController.swift in Sources */,
 				29FBFAC22CDD36E100F8EC88 /* HomePageViewController.swift in Sources */,
 				295F09482CEEE49100926C23 /* DateFilterView.swift in Sources */,
+				3F9631302D00E99900FFB683 /* PhotoManager.swift in Sources */,
 				3FA76C5F2CED3C380086F19F /* ProfileViewController.swift in Sources */,
 				29FBFAC22CDD36E100F8EC88 /* HomePageViewController.swift in Sources */,
 				3F8E88CB2CEFE372002DBB0D /* PaddingLabel.swift in Sources */,
@@ -280,6 +291,7 @@
 				295F09482CEEE49100926C23 /* DateFilterView.swift in Sources */,
 				299C169B2CD537BC009F0430 /* SceneDelegate.swift in Sources */,
 				29A10BAF2CF3C35D00C44A30 /* FilterButtonsManager.swift in Sources */,
+				3F9631322D00E9D300FFB683 /* ImageViewUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

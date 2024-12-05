@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class HomePageViewController: UIViewController {
 
+    var currentUser: FirebaseAuth.User?
     let homeView = HomePageView()
     let notificationCenter = NotificationCenter.default
     var selectedDates = [DateComponents]()
@@ -56,6 +58,33 @@ class HomePageViewController: UIViewController {
             name: .personalityToFilterSelected,
             object: nil)
         
+        let barText = UIBarButtonItem(
+            title: "Logout",
+            style: .plain,
+            target: self,
+            action: #selector(onLogOutBarButtonTapped)
+        )
+        
+        navigationItem.rightBarButtonItem = barText
+        
+        self.homeView.dummyLabel.text = self.currentUser?.email
+        
+    }
+    
+    @objc func onLogOutBarButtonTapped(){
+        let logoutAlert = UIAlertController(title: "Logging out!", message: "Are you sure want to log out?",
+            preferredStyle: .actionSheet)
+        logoutAlert.addAction(UIAlertAction(title: "Yes, log out!", style: .default, handler: {(_) in
+                do{
+                    try Auth.auth().signOut()
+                }catch{
+                    print("Error occured!")
+                }
+            })
+        )
+        logoutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        self.present(logoutAlert, animated: true)
     }
 
     override func viewDidLayoutSubviews() {

@@ -48,24 +48,15 @@ class LoginScreenViewController: UIViewController {
             if let error = error {
                 self.loginScreen.errorLabel.text = "Incorrect email or password. \(error.localizedDescription)"
             } else {
-                self.navigateToHomePage()
+                self.dismiss(animated: true)
             }
         }
     }
-
-    func navigateToHomePage() {
-        let homePageController = HomePageViewController()
-        homePageController.modalPresentationStyle = .fullScreen
-        present(homePageController, animated: true, completion: nil)
-    }
-
     
     @objc func onButtonRegisterTapped() {
         print("Register button tapped")
         let registerController = RegisterScreenViewController()
-        let navController = UINavigationController(rootViewController: registerController)
-        navController.modalPresentationStyle = .fullScreen
-        present(navController, animated: true, completion: nil)
+        navigationController?.pushViewController(registerController, animated: true)
     }
 
 
