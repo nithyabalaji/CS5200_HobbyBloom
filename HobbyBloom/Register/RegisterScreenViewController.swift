@@ -17,7 +17,6 @@ class RegisterScreenViewController: UIViewController, CLLocationManagerDelegate 
         super.viewDidLoad()
         
         registerScreen.takeQuizButton.addTarget(self, action: #selector(onTakeQuizButtonTapped), for: .touchUpInside)
-        registerScreen.backButton?.addTarget(self, action: #selector(onBackButtonTapped), for: .touchUpInside)
 
         // Request location access
         locationManager.delegate = self
@@ -27,13 +26,6 @@ class RegisterScreenViewController: UIViewController, CLLocationManagerDelegate 
         locationManager.startUpdatingLocation()
         // Remove password hiding
            registerScreen.passwordTextField.isSecureTextEntry = false  // Set to false to display password in plain text
-    }
-    @objc func onBackButtonTapped() {
-       
-        let loginController = LoginScreenViewController()
-        let navController = UINavigationController(rootViewController: loginController)
-        navController.modalPresentationStyle = .fullScreen
-        present(navController, animated: true, completion: nil)
     }
     
     @objc func onTakeQuizButtonTapped() {
@@ -102,8 +94,7 @@ class RegisterScreenViewController: UIViewController, CLLocationManagerDelegate 
         guard let name = registerScreen.nameTextField.text, !name.isEmpty,
               let email = registerScreen.emailTextField.text, !email.isEmpty, isValidEmail(email),
               let password = registerScreen.passwordTextField.text, !password.isEmpty, isValidPassword(password),
-              let city = registerScreen.selectedCity, !city.isEmpty else {
-            return false
+              let city = registerScreen.selectedCity, !city.isEmpty, city != "Select a city" else {            return false
         }
         return true
     }
@@ -128,6 +119,8 @@ class RegisterScreenViewController: UIViewController, CLLocationManagerDelegate 
             alertMessage = "Please enter a valid email address."
         } else if let password = registerScreen.passwordTextField.text, !isValidPassword(password) {
             alertMessage = "Password must be at least 6 characters long."
+        } else if registerScreen.selectedCity == "Select a city" {
+            alertMessage = "Please select a city."
         } else {
             alertMessage = "Please fill all required fields before proceeding."
         }
@@ -138,6 +131,7 @@ class RegisterScreenViewController: UIViewController, CLLocationManagerDelegate 
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+
     
     // Show alert for database error
     private func showAlertForDatabaseError() {

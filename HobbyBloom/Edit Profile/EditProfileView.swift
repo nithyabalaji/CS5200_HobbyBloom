@@ -8,7 +8,7 @@
 import UIKit
 
 class EditProfileView: UIView {
-
+    var buttonTakePhoto: UIButton!
     var TextFieldName: UITextField!
     var TextFieldEmail: UITextField!
     var TextFieldPassword: UITextField!
@@ -21,7 +21,6 @@ class EditProfileView: UIView {
             self.backgroundColor = .white
             setupImage()
             setupTextFieldName()
-            setupTextFieldEmail()
             setupTextFieldPassword()
             setupTextFieldCity()
         setupSaveButton()
@@ -32,13 +31,16 @@ class EditProfileView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     func setupImage() {
-        image = UIImageView()
-        image.image = UIImage(systemName: "person.fill")
-        image.contentMode = .scaleAspectFit
-        image.clipsToBounds = true
-        image.tintColor = .myDarkPurple
-        image.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(image)
+        buttonTakePhoto = UIButton(type: .system)
+               buttonTakePhoto.setTitle("", for: .normal)
+               buttonTakePhoto.setImage(UIImage(systemName: "person.circle.fill")?.withRenderingMode(.alwaysOriginal), for: .normal)
+               buttonTakePhoto.contentHorizontalAlignment = .fill
+               buttonTakePhoto.contentVerticalAlignment = .fill
+                buttonTakePhoto.tintColor = .myDarkPurple
+               buttonTakePhoto.imageView?.contentMode = .scaleAspectFit
+               buttonTakePhoto.showsMenuAsPrimaryAction = true
+               buttonTakePhoto.translatesAutoresizingMaskIntoConstraints = false
+               self.addSubview(buttonTakePhoto)
     }
 
     func setupTextFieldName()
@@ -51,16 +53,16 @@ class EditProfileView: UIView {
         TextFieldName.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(TextFieldName)
     }
-    func setupTextFieldEmail()
-    {
-        TextFieldEmail = UITextField()
-        TextFieldEmail.placeholder = "Email"
-        TextFieldEmail.keyboardType = .emailAddress
-        TextFieldEmail.backgroundColor = UIColor.purple.withAlphaComponent(0.2)
-        TextFieldEmail.layer.cornerRadius = 8
-        TextFieldEmail.translatesAutoresizingMaskIntoConstraints =  false
-        self.addSubview(TextFieldEmail)
-    }
+//    func setupTextFieldEmail()
+//    {
+//        TextFieldEmail = UITextField()
+//        TextFieldEmail.placeholder = "Email"
+//        TextFieldEmail.keyboardType = .emailAddress
+//        TextFieldEmail.backgroundColor = UIColor.purple.withAlphaComponent(0.2)
+//        TextFieldEmail.layer.cornerRadius = 8
+//        TextFieldEmail.translatesAutoresizingMaskIntoConstraints =  false
+//        self.addSubview(TextFieldEmail)
+//    }
     func setupTextFieldPassword()
     {
         TextFieldPassword = UITextField()
@@ -92,25 +94,19 @@ class EditProfileView: UIView {
    
     func initConstraints() {
             NSLayoutConstraint.activate([
-                image.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                image.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 32),
-                image.widthAnchor.constraint(equalToConstant: 100),
-                image.heightAnchor.constraint(equalToConstant: 100),
+                buttonTakePhoto.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                buttonTakePhoto.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 32),
+                buttonTakePhoto.widthAnchor.constraint(equalToConstant: 100),
+                buttonTakePhoto.heightAnchor.constraint(equalToConstant: 100),
 
                 TextFieldName.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                TextFieldName.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 16),
+                TextFieldName.topAnchor.constraint(equalTo: buttonTakePhoto.bottomAnchor, constant: 16),
                 TextFieldName.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 32),
                 TextFieldName.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -32),
                 TextFieldName.heightAnchor.constraint(equalToConstant: 44),
 
-                TextFieldEmail.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                TextFieldEmail.topAnchor.constraint(equalTo: TextFieldName.bottomAnchor, constant: 16),
-                TextFieldEmail.leadingAnchor.constraint(equalTo: TextFieldName.leadingAnchor),
-                TextFieldEmail.trailingAnchor.constraint(equalTo: TextFieldName.trailingAnchor),
-                TextFieldEmail.heightAnchor.constraint(equalToConstant: 44),
-
                 TextFieldPassword.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                TextFieldPassword.topAnchor.constraint(equalTo: TextFieldEmail.bottomAnchor, constant: 16),
+                TextFieldPassword.topAnchor.constraint(equalTo: TextFieldName.bottomAnchor, constant: 16),
                 TextFieldPassword.leadingAnchor.constraint(equalTo: TextFieldName.leadingAnchor),
                 TextFieldPassword.trailingAnchor.constraint(equalTo: TextFieldName.trailingAnchor),
                 TextFieldPassword.heightAnchor.constraint(equalToConstant: 44),
@@ -120,6 +116,12 @@ class EditProfileView: UIView {
                 TextFieldCity.leadingAnchor.constraint(equalTo: TextFieldName.leadingAnchor),
                 TextFieldCity.trailingAnchor.constraint(equalTo: TextFieldName.trailingAnchor),
                 TextFieldCity.heightAnchor.constraint(equalToConstant: 44),
+
+//                SaveButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+//                SaveButton.topAnchor.constraint(equalTo: TextFieldPassword.bottomAnchor, constant: 16),
+//                SaveButton.leadingAnchor.constraint(equalTo: TextFieldName.leadingAnchor),
+//                SaveButton.trailingAnchor.constraint(equalTo: TextFieldName.trailingAnchor),
+//                SaveButton.heightAnchor.constraint(equalToConstant: 44),
 
                 SaveButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                 SaveButton.topAnchor.constraint(equalTo: TextFieldCity.bottomAnchor, constant: 32),

@@ -225,7 +225,7 @@ class LoginScreenView: UIView {
 
     func setupLogoImageView() {
         logoImageView = UIImageView()
-        logoImageView.image = UIImage(named: "logo") // Replace with your logo image name
+        logoImageView.image = UIImage(named: "Logo") // Replace with your logo image name
         logoImageView.contentMode = .scaleAspectFit
         addSubviewToContainer(subview: logoImageView)
     }
@@ -322,8 +322,8 @@ class LoginScreenView: UIView {
 
             logoImageView.topAnchor.constraint(equalTo: contentWrapper.topAnchor, constant: 24),
             logoImageView.centerXAnchor.constraint(equalTo: contentWrapper.centerXAnchor),
-            logoImageView.widthAnchor.constraint(equalToConstant: 100),
-            logoImageView.heightAnchor.constraint(equalToConstant: 100),
+            logoImageView.widthAnchor.constraint(equalToConstant: 150),
+            logoImageView.heightAnchor.constraint(equalToConstant: 150),
 
             appNameLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 16),
             appNameLabel.centerXAnchor.constraint(equalTo: contentWrapper.centerXAnchor),

@@ -242,7 +242,6 @@ class RegisterScreenView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     var quizInstructionLabel: UILabel!
     var takeQuizButton: UIButton!
     var errorLabel: UILabel!
-    var backButton: UIButton!
     
     let activityIndicator = UIActivityIndicatorView(style: .large)
     
@@ -264,7 +263,6 @@ class RegisterScreenView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         setupErrorLabel()
         setupViews()
         initConstraints()
-        setupBackButton()
     }
     
     private func setupViews() {
@@ -276,22 +274,6 @@ class RegisterScreenView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
             activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
-    }
-    
-    func setupBackButton() {
-        let backButton = UIButton(type: .system)
-        backButton.setTitle("Back", for: .normal)
-        backButton.setTitleColor(.myPurple, for: .normal)
-        backButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        addSubviewToContainer(subview: backButton)
-        
-        NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: contentWrapper.topAnchor, constant: 16),
-            backButton.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 16)
-        ])
-        
-        self.backButton = backButton
     }
 
     func setupContentWrapper() {
