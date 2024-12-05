@@ -211,10 +211,7 @@ class QuizViewController: UIViewController {
                     // Show an error label or alert if needed
                 } else {
                     print("Interests and personality saved successfully")
-                    
-                    // Push ProfileViewController to the navigation stack after saving
-                    let profileViewController = ProfileViewController()
-                    self.navigationController?.pushViewController(profileViewController, animated: true)
+                    self.dismiss(animated: true)
                 }
             }
         }
