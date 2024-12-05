@@ -82,6 +82,7 @@
 // QuizViewController.swift
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class QuizViewController: UIViewController {
     
@@ -131,42 +132,6 @@ class QuizViewController: UIViewController {
     @objc func saveInterestsTapped() {
         saveInterestsAndNavigate()
     }
-    
-//     func saveInterestsAndNavigate() {
-//        guard let userId = userId else {
-//            print("User ID not found")
-//            return
-//        }
-//        
-//        // Check if all questions are answered
-//        guard answers.allSatisfy({ $0 != nil }) else {
-//            print("Please answer all questions")
-//            return
-//        }
-//        
-//        // Map answers to the corresponding interests
-//        var selectedInterests = [String]()
-//        for (index, answer) in answers.enumerated() {
-//            if let answerIndex = answer {
-//                selectedInterests.append(quizView.answerOptions[index][answerIndex])
-//            }
-//        }
-//        
-//        // Save interests to Firestore under the user's document
-//        db.collection("users").document(userId).setData(["interests": selectedInterests], merge: true) { error in
-//            DispatchQueue.main.async {
-//                if let error = error {
-//                    print("Error saving interests: \(error.localizedDescription)")
-//                    // Show an error label or alert if needed
-//                } else {
-//                    print("Interests saved successfully")
-//                    self.dismiss(animated: true)
-//                    let profileViewController = ProfileViewController()
-//                    self.navigationController?.pushViewController(profileViewController, animated: true)
-//                }
-//            }
-//        }
-//    }
  
     private func saveInterestsAndNavigate() {
         guard let userId = userId else {
@@ -212,6 +177,18 @@ class QuizViewController: UIViewController {
                 } else {
                     print("Interests and personality saved successfully")
                     self.dismiss(animated: true)
+                    if let navigationController = self.navigationController {
+                                   for controller in navigationController.viewControllers {
+                                       if let profileVC = controller as? ProfileViewController {
+                                           navigationController.popToViewController(profileVC, animated: true)
+                                           return
+                                       }
+                                   }
+
+                                   let profileViewController = ProfileViewController()
+                                   profileViewController.currentUser = Auth.auth().currentUser
+                                   navigationController.pushViewController(profileViewController, animated: true)
+                               }
                 }
             }
         }
