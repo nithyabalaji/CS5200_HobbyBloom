@@ -14,6 +14,7 @@ class ProfileViewController: UIViewController {
     var currentUser: FirebaseAuth.User?
     override func viewDidLoad() {
         super.viewDidLoad()
+        profileview.backgroundColor = .white
         let editButton = UIBarButtonItem(
                     title: "Edit",
                     style: .plain,
