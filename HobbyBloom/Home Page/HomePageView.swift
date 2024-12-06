@@ -18,6 +18,7 @@ class HomePageView: UIView {
     var buttonCategoryFilter: UIButton!
     var filterButtonsLine: UIView!
     var dummyLabel: UILabel!
+    var dummyButton: UIButton!
     var filterButtonsHeightConstraint: NSLayoutConstraint!
 
     override init(frame: CGRect) {
@@ -28,12 +29,17 @@ class HomePageView: UIView {
         setupTabBar()
         setupTabUnderline()
         setupFilterButtonsView()
-        
+        setupDummyButton()
         dummyLabel = UILabel()
         dummyLabel.text = "HELLOOOOOOO"
         self.addSubviewToView(subview: dummyLabel)
         
         initConstraints()
+    }
+    func setupDummyButton() {
+        dummyButton = UIButton(type: .roundedRect)
+        dummyButton.setTitle("Dummy Activity", for: .normal)
+        self.addSubviewToView(subview: dummyButton)
     }
     
     func setupLocationButton() {
@@ -142,8 +148,10 @@ class HomePageView: UIView {
             filterButtonsView.topAnchor.constraint(equalTo: self.tabBar.bottomAnchor, constant: 16),
             filterButtonsView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
             filterButtonsView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            dummyButton.topAnchor.constraint(equalTo: self.filterButtonsView.bottomAnchor, constant: 32),
+            dummyButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 32),
             
-            dummyLabel.topAnchor.constraint(equalTo: self.filterButtonsView.bottomAnchor, constant: 32),
+            dummyLabel.topAnchor.constraint(equalTo: self.dummyButton.bottomAnchor, constant: 32),
             dummyLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 32)
         ])
         
