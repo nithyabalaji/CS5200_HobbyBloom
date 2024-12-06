@@ -10,9 +10,9 @@ import UIKit
 class DateFilterViewController: UIViewController {
     
     let dateFilterView = DateFilterView()
-    let notificationCenter = NotificationCenter.default
     var selectionBehavior: UICalendarSelectionMultiDate!
     var datesSelected = [DateComponents]()
+    var completionHandler: (([DateComponents]) -> Void)? // Completion handler to return selected dates
     
     override func loadView() {
         view = dateFilterView
@@ -27,39 +27,33 @@ class DateFilterViewController: UIViewController {
     }
     
     @objc func finishSelecting() {
-        notificationCenter.post(
-            name: .datesToFilterSelected,
-            object: self.datesSelected)
+        completionHandler?(datesSelected) // Call the completion handler with selected dates
         self.dismiss(animated: true)
     }
     
     @objc func clearSelection() {
         selectionBehavior.setSelectedDates([], animated: true)
-        self.datesSelected.removeAll()
+        datesSelected.removeAll()
     }
-    
     
     func setCalendarViewSelection() {
         selectionBehavior = UICalendarSelectionMultiDate(delegate: self)
-        self.dateFilterView.calendarView.selectionBehavior = selectionBehavior
-        for date in self.datesSelected {
-            self.multiDateSelection(selectionBehavior, didSelectDate: date)
+        dateFilterView.calendarView.selectionBehavior = selectionBehavior
+        for date in datesSelected {
+            multiDateSelection(selectionBehavior, didSelectDate: date)
         }
     }
-
 }
 
 extension DateFilterViewController: UICalendarSelectionMultiDateDelegate {
-    
     func multiDateSelection(_ selection: UICalendarSelectionMultiDate, didSelectDate dateComponents: DateComponents) {
         selectionBehavior.selectedDates.append(dateComponents)
-        if !self.datesSelected.contains(dateComponents) {
-            self.datesSelected.append(dateComponents)
+        if !datesSelected.contains(dateComponents) {
+            datesSelected.append(dateComponents)
         }
     }
     
     func multiDateSelection(_ selection: UICalendarSelectionMultiDate, didDeselectDate dateComponents: DateComponents) {
-        self.datesSelected.removeAll(where: { $0 == dateComponents })
+        datesSelected.removeAll(where: { $0 == dateComponents })
     }
-    
 }

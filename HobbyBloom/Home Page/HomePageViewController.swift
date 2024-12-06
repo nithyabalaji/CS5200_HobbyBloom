@@ -7,9 +7,8 @@
 
 import UIKit
 import FirebaseAuth
-
+import FirebaseFirestore
 class HomePageViewController: UIViewController {
-
     var currentUser: FirebaseAuth.User?
     let homeView = HomePageView()
     let notificationCenter = NotificationCenter.default
@@ -18,6 +17,8 @@ class HomePageViewController: UIViewController {
     var selectedPersonality: String?
     let cities = Categories.cities
     var selectedCity = "Boston"
+    var activities: [Activity] = []
+    var filteredActivities: [Activity] = []
         
     override func loadView() {
         view = homeView
@@ -44,54 +45,101 @@ class HomePageViewController: UIViewController {
             self,
             selector: #selector(notificationReceivedForDatesSelected(notification:)),
             name: .datesToFilterSelected,
-            object: nil)
+            object: nil
+        )
         
         notificationCenter.addObserver(
             self,
             selector: #selector(notificationReceivedForInterestsSelected(notification:)),
             name: .interestsToFilterSelected,
-            object: nil)
+            object: nil
+        )
         
         notificationCenter.addObserver(
             self,
             selector: #selector(notificationReceivedForPersonalitySelected(notification:)),
             name: .personalityToFilterSelected,
-            object: nil)
-        
-        let barText = UIBarButtonItem(
-            title: "Logout",
-            style: .plain,
-            target: self,
-            action: #selector(onLogOutBarButtonTapped)
+            object: nil
         )
         
-        navigationItem.rightBarButtonItem = barText
-        
-        self.homeView.dummyLabel.text = self.currentUser?.email
-        
+        fetchUserPreferences() // Fetch user preferences for "For You"
+        fetchActivities() // Fetch activities
+        self.homeView.tableView.delegate = self
+        self.homeView.tableView.dataSource = self
     }
     
-    @objc func onLogOutBarButtonTapped(){
-        let logoutAlert = UIAlertController(title: "Logging out!", message: "Are you sure want to log out?",
-            preferredStyle: .actionSheet)
-        logoutAlert.addAction(UIAlertAction(title: "Yes, log out!", style: .default, handler: {(_) in
-                do{
-                    try Auth.auth().signOut()
-                }catch{
-                    print("Error occured!")
-                }
-            })
-        )
-        logoutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        
-        self.present(logoutAlert, animated: true)
-    }
-
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         updateLinePosition()
     }
     
+    // MARK: - Fetch Activities
+    func fetchActivities() {
+        print("Fetching activities")
+        let db = Firestore.firestore()
+        db.collection("activities").getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error fetching activities: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let documents = snapshot?.documents else {
+                print("No activities found in Firebase")
+                return
+            }
+            
+            self.activities = documents.compactMap { document in
+                do {
+                    let activity = try document.data(as: Activity.self)
+                    print("Fetched activity: \(activity)")
+                    return activity
+                } catch {
+                    print("Error decoding activity: \(error)")
+                    return nil
+                }
+            }
+            
+            print("Total activities fetched: \(self.activities.count)")
+            self.filterActivities() // Apply filters after fetching activities
+        }
+    }
+    
+    // MARK: - Fetch User Preferences
+    func fetchUserPreferences() {
+        guard let user = Auth.auth().currentUser else { return }
+        let db = Firestore.firestore()
+        db.collection("users").document(user.uid).getDocument { snapshot, error in
+            if let error = error {
+                print("Error fetching user preferences: \(error.localizedDescription)")
+                return
+            }
+            guard let data = snapshot?.data() else { return }
+            self.selectedInterests = data["interests"] as? [String] ?? []
+            self.selectedPersonality = (data["personality"] as? [String])?.first
+            self.filterActivities() // Reapply filters after fetching preferences
+        }
+    }
+    
+    func filterActivities() {
+        if self.homeView.tabBar.selectedItem?.tag == 0 {
+            // "For You" Tab
+            filteredActivities = activities.filter { activity in
+                (selectedPersonality != nil && activity.personality_tags.contains(selectedPersonality ?? "")) ||
+                !Set(activity.interest_tags).isDisjoint(with: selectedInterests)
+            }
+        } else {
+            // "All Events" Tab
+            filteredActivities = activities.filter { activity in
+                (selectedDates.isEmpty || selectedDates.contains(activity.dateComponents)) &&
+                (selectedInterests.isEmpty || !Set(activity.interest_tags).isDisjoint(with: selectedInterests))
+            }
+            if selectedDates.isEmpty && selectedInterests.isEmpty {
+                filteredActivities = activities // Show all events if no filters are applied
+            }
+        }
+        print("Filtered Activities: \(filteredActivities)")
+        self.homeView.tableView.reloadData()
+    }
     @objc private func onLocationButtonTapped() {
         var menuItems = [UIAction]()
         for city in cities {
@@ -130,27 +178,23 @@ class HomePageViewController: UIViewController {
         
         self.homeView.locationLabel.attributedText = combinedString
     }
-
 }
-
-// functions dealing with switching tabs
+// MARK: - UITabBarDelegate
 extension HomePageViewController: UITabBarDelegate {
-    
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         self.updateLinePosition()
         self.updateFilterConstraints(showFilters: item.tag == 1)
+        self.filterActivities() // Reapply filters when switching tabs
     }
     
     func updateLinePosition() {
         guard let items = self.homeView.tabBar.items else { return }
         guard let selectedItem = self.homeView.tabBar.selectedItem else { return }
         guard let index = items.firstIndex(of: selectedItem) else { return }
-
         let tabBarWidth = self.homeView.tabBar.frame.width / CGFloat(items.count)
         let xPosition = CGFloat(index) * tabBarWidth + (tabBarWidth / 3)
         let lineHeight: CGFloat = 1.5
         let yPosition = self.homeView.tabBar.frame.height + lineHeight + self.homeView.safeAreaInsets.top + self.homeView.locationLabel.frame.height + 16
-
         UIView.animate(withDuration: 0.25) { [weak self] in
             self?.homeView.tabUnderline.frame = CGRect(
                 x: xPosition,
@@ -161,7 +205,7 @@ extension HomePageViewController: UITabBarDelegate {
         }
     }
     
-    func updateFilterConstraints(showFilters: Bool){
+    func updateFilterConstraints(showFilters: Bool) {
         if showFilters {
             self.homeView.buttonDateFilter.isHidden = false
             self.homeView.buttonCategoryFilter.isHidden = false
@@ -178,4 +222,15 @@ extension HomePageViewController: UITabBarDelegate {
         self.homeView.layoutIfNeeded()
     }
 }
-
+// MARK: - UITableViewDelegate and UITableViewDataSource
+extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.filteredActivities.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ActivityCell.reuseIdentifier, for: indexPath) as! ActivityCell
+        let activity = self.filteredActivities[indexPath.row]
+        cell.configure(with: activity)
+        return cell
+    }
+}

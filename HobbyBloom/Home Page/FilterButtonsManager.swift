@@ -1,12 +1,11 @@
+
 //
 //  FilterButtonsManager.swift
 //  HobbyBloom
 //
 //  Created by Nithya Balaji on 11/24/24.
 //
-
 import UIKit
-
 // code for handling the filter buttons
 extension HomePageViewController {
     @objc func onButtonDateFilterTapped() {
