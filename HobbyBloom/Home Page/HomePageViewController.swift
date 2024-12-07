@@ -8,7 +8,9 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+
 class HomePageViewController: UIViewController {
+    
     var currentUser: FirebaseAuth.User?
     let homeView = HomePageView()
     let notificationCenter = NotificationCenter.default
@@ -16,9 +18,11 @@ class HomePageViewController: UIViewController {
     var selectedInterests = [String]()
     var selectedPersonality: String?
     let cities = Categories.cities
-    var selectedCity = "Boston"
+    var selectedCity: String!
     var activities: [Activity] = []
     var filteredActivities: [Activity] = []
+    var userInterests = [String]()
+    var userPersonalities = [String]()
         
     override func loadView() {
         view = homeView
@@ -29,13 +33,10 @@ class HomePageViewController: UIViewController {
         
         self.homeView.tabBar.delegate = self
         self.updateLinePosition()
-        self.updateLocation(selectedCity)
         
         if self.homeView.tabBar.selectedItem?.tag == 0 {
             self.updateFilterConstraints(showFilters: false)
         }
-        
-        updateLocationLabel(self.selectedCity)
         
         self.homeView.locationArrowButton.addTarget(self, action: #selector(onLocationButtonTapped), for: .touchUpInside)
         self.homeView.buttonDateFilter.addTarget(self, action: #selector(onButtonDateFilterTapped), for: .touchUpInside)
@@ -114,30 +115,85 @@ class HomePageViewController: UIViewController {
                 return
             }
             guard let data = snapshot?.data() else { return }
-            self.selectedInterests = data["interests"] as? [String] ?? []
-            self.selectedPersonality = (data["personality"] as? [String])?.first
+            let city = data["city"] as? String ?? ""
+            self.updateLocation(city)
+            self.userInterests = data["interests"] as? [String] ?? []
+            self.userPersonalities = data["personality"] as? [String] ?? []
             self.filterActivities() // Reapply filters after fetching preferences
         }
     }
     
     func filterActivities() {
+        filteredActivities = self.activities
+        self.filteredActivities = self.filteredActivities.filter { activity in
+            let activityCity = activity.city
+            return activityCity == self.selectedCity
+        }
+        
         if self.homeView.tabBar.selectedItem?.tag == 0 {
             // "For You" Tab
-            filteredActivities = activities.filter { activity in
-                (selectedPersonality != nil && activity.personality_tags.contains(selectedPersonality ?? "")) ||
-                !Set(activity.interest_tags).isDisjoint(with: selectedInterests)
+            if self.userInterests.count > 0 {
+                self.filteredActivities = self.filteredActivities.filter { activity in
+                    let activityInterests = activity.interest_tags
+                    for interst in userInterests {
+                        if activityInterests.contains(interst) {
+                            return true
+                        }
+                    }
+                    return false
+                }
             }
+            
+            if self.userPersonalities.count > 0 {
+                self.filteredActivities = self.filteredActivities.filter { activity in
+                    let activityPersonality = activity.personality_tags
+                    for personality in userPersonalities {
+                        if activityPersonality.contains(personality) {
+                            return true
+                        }
+                    }
+                    return false
+                }
+            }
+            
         } else {
             // "All Events" Tab
-            filteredActivities = activities.filter { activity in
-                (selectedDates.isEmpty || selectedDates.contains(activity.dateComponents)) &&
-                (selectedInterests.isEmpty || !Set(activity.interest_tags).isDisjoint(with: selectedInterests))
+            if selectedDates.count > 0 {
+                let dates = selectedDates.map { components -> DateComponents in
+                    var newComponents = DateComponents()
+                    newComponents.year = components.year
+                    newComponents.month = components.month
+                    newComponents.day = components.day
+                    newComponents.isLeapMonth = components.isLeapMonth
+                    return newComponents
+                }
+                self.filteredActivities = self.filteredActivities.filter { activity in
+                    let activityDate = activity.dateComponents
+                    return dates.contains(activityDate)
+                }
             }
-            if selectedDates.isEmpty && selectedInterests.isEmpty {
-                filteredActivities = activities // Show all events if no filters are applied
+            
+            if self.selectedInterests.count > 0 {
+                self.filteredActivities = self.filteredActivities.filter { activity in
+                    let activityInterests = activity.interest_tags
+                    for interst in selectedInterests {
+                        if activityInterests.contains(interst) {
+                            return true
+                        }
+                    }
+                    return false
+                }
             }
+            
+            if let personality = selectedPersonality {
+                self.filteredActivities = self.filteredActivities.filter { activity in
+                    let activityPersonality = activity.personality_tags
+                    return activityPersonality.contains(personality)
+                }
+            }
+            
         }
-        print("Filtered Activities: \(filteredActivities)")
+        //print("Filtered Activities: \(filteredActivities)")
         self.homeView.tableView.reloadData()
     }
     @objc private func onLocationButtonTapped() {
@@ -157,6 +213,7 @@ class HomePageViewController: UIViewController {
     private func updateLocation(_ city: String) {
         updateLocationLabel(city)
         self.selectedCity = city
+        self.filterActivities()
     }
     
     private func updateLocationLabel(_ city: String) {

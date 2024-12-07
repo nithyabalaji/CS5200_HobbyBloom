@@ -7,8 +7,10 @@
 
 import Foundation
 import FirebaseFirestore
+
 struct Activity: Decodable {
     let name: String
+    let city: String
     let description: String
     let price: String
     let interest_tags: [String]

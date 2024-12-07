@@ -11,11 +11,11 @@ import UIKit
 class CategoryFilterViewController: UIViewController {
     
     let categoryFilterView = CategoryFilterView()
+    let notificationCenter = NotificationCenter.default
     var allInterests = [String]()
     var allPersonalities = [String]()
     var selectedInterests = [String]()
     var selectedPersonality: String?
-    var completionHandler: (([String], String?) -> Void)? // Completion handler to return selected interests and personality
     
     override func loadView() {
         view = categoryFilterView
@@ -24,37 +24,45 @@ class CategoryFilterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getAllCategories()
+        self.getAllCategories()
         categoryFilterView.filterButton.addTarget(self, action: #selector(finishSelecting), for: .touchUpInside)
         categoryFilterView.clearAllButton.addTarget(self, action: #selector(clearSelection), for: .touchUpInside)
         
-        categoryFilterView.interestsCollectionView.dataSource = self
-        categoryFilterView.interestsCollectionView.delegate = self
-        categoryFilterView.personalityCollectionView.dataSource = self
-        categoryFilterView.personalityCollectionView.delegate = self
+        self.categoryFilterView.interestsCollectionView.dataSource = self
+        self.categoryFilterView.interestsCollectionView.delegate = self
+        self.categoryFilterView.personalityCollectionView.dataSource = self
+        self.categoryFilterView.personalityCollectionView.delegate = self
+        
     }
     
     func getAllCategories() {
-        allInterests.append(contentsOf: Categories.interests)
-        allPersonalities.append(contentsOf: Categories.personality)
+        self.allInterests.append(contentsOf: Categories.interests)
+        self.allPersonalities.append(contentsOf: Categories.personality)
     }
     
     @objc func finishSelecting() {
-        completionHandler?(selectedInterests, selectedPersonality) // Call the completion handler
+        notificationCenter.post(
+            name: .interestsToFilterSelected,
+            object: self.selectedInterests)
+        notificationCenter.post(
+            name: .personalityToFilterSelected,
+            object: self.selectedPersonality)
         self.dismiss(animated: true)
     }
     
     @objc func clearSelection() {
-        selectedInterests.removeAll()
-        categoryFilterView.interestsCollectionView.reloadData()
-        selectedPersonality = nil
-        categoryFilterView.personalityCollectionView.reloadData()
+        self.selectedInterests.removeAll()
+        self.categoryFilterView.interestsCollectionView.reloadData()
+        self.selectedPersonality = nil
+        self.categoryFilterView.personalityCollectionView.reloadData()
     }
+    
+    
 }
 
 extension CategoryFilterViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == categoryFilterView.interestsCollectionView {
+        if collectionView == self.categoryFilterView.interestsCollectionView {
             return allInterests.count
         } else {
             return allPersonalities.count
@@ -64,7 +72,7 @@ extension CategoryFilterViewController: UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCategoriesCell", for: indexPath) as! FilterCategoriesCell
         
-        if collectionView == categoryFilterView.interestsCollectionView {
+        if collectionView == self.categoryFilterView.interestsCollectionView {
             let categoryName = allInterests[indexPath.row]
             cell.configure(tag: categoryName)
             if selectedInterests.contains(categoryName) {
@@ -90,21 +98,26 @@ extension CategoryFilterViewController: UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == categoryFilterView.interestsCollectionView {
+        if collectionView == self.categoryFilterView.interestsCollectionView {
             let categoryName = allInterests[indexPath.row]
             if selectedInterests.contains(categoryName) {
-                selectedInterests.removeAll(where: { $0 == categoryName })
-            } else if selectedInterests.count < 5 {
-                selectedInterests.append(categoryName)
+                selectedInterests.removeAll(where: { $0 == categoryName} )
+            } else {
+                if selectedInterests.count < 5 {
+                    selectedInterests.append(categoryName)
+                }
             }
         } else {
             let categoryName = allPersonalities[indexPath.row]
-            if selectedPersonality == categoryName {
+            if let personality = selectedPersonality, personality == categoryName {
                 selectedPersonality = nil
             } else {
                 selectedPersonality = categoryName
             }
         }
+        
         collectionView.reloadData()
     }
+    
+    
 }
