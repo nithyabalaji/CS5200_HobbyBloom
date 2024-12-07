@@ -6,7 +6,6 @@
 //
 
 import UIKit
-
 class HomePageView: UIView {
     
     var locationLabel: UILabel!
@@ -17,9 +16,8 @@ class HomePageView: UIView {
     var buttonDateFilter: UIButton!
     var buttonCategoryFilter: UIButton!
     var filterButtonsLine: UIView!
-    var dummyLabel: UILabel!
+    var tableView: UITableView!
     var filterButtonsHeightConstraint: NSLayoutConstraint!
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
@@ -28,12 +26,20 @@ class HomePageView: UIView {
         setupTabBar()
         setupTabUnderline()
         setupFilterButtonsView()
-        
-        dummyLabel = UILabel()
-        dummyLabel.text = "HELLOOOOOOO"
-        self.addSubviewToView(subview: dummyLabel)
-        
+        setupTableView()
         initConstraints()
+    }
+    
+    func setupTableView() {
+        tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .singleLine
+        tableView.showsVerticalScrollIndicator = true
+        tableView.backgroundColor = .white
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100
+        tableView.register(ActivityCell.self, forCellReuseIdentifier: ActivityCell.reuseIdentifier)
+        addSubview(tableView)
     }
     
     func setupLocationButton() {
@@ -143,10 +149,12 @@ class HomePageView: UIView {
             filterButtonsView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
             filterButtonsView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
             
-            dummyLabel.topAnchor.constraint(equalTo: self.filterButtonsView.bottomAnchor, constant: 32),
-            dummyLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 32)
+            tableView.topAnchor.constraint(equalTo: self.filterButtonsView.bottomAnchor, constant: 16),
+            tableView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
         ])
-        
+    
         constraintsForFilters()
         filterButtonsHeightConstraint = filterButtonsView.heightAnchor.constraint(equalToConstant: 35)
         filterButtonsHeightConstraint.isActive = true
@@ -172,5 +180,4 @@ class HomePageView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }

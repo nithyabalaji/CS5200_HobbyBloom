@@ -20,7 +20,6 @@
 		299C16A22CD537BD009F0430 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 299C16A12CD537BD009F0430 /* Assets.xcassets */; };
 		299C16A52CD537BD009F0430 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 299C16A42CD537BD009F0430 /* Base */; };
 		29A10BAD2CF39EA100C44A30 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A10BAC2CF39EA100C44A30 /* NotificationNames.swift */; };
-		29A10BAF2CF3C35D00C44A30 /* FilterButtonsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A10BAE2CF3C35D00C44A30 /* FilterButtonsManager.swift */; };
 		29FBFAC02CDD36CA00F8EC88 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FBFABF2CDD36CA00F8EC88 /* HomePageView.swift */; };
 		29FBFAC22CDD36E100F8EC88 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FBFAC12CDD36E100F8EC88 /* HomePageViewController.swift */; };
 		3F1EFF2B2CF0F47200503EDB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F1EFF2A2CF0F47200503EDB /* GoogleService-Info.plist */; };
@@ -35,6 +34,9 @@
 		3FA76C5B2CED38DA0086F19F /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA76C5A2CED38DA0086F19F /* EditProfileView.swift */; };
 		3FA76C5D2CED3C110086F19F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA76C5C2CED3C110086F19F /* ProfileView.swift */; };
 		3FA76C5F2CED3C380086F19F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA76C5E2CED3C380086F19F /* ProfileViewController.swift */; };
+		8204AD932D02775F00C04768 /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204AD922D02775000C04768 /* ActivityCell.swift */; };
+		8204AD952D02792400C04768 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204AD942D02792000C04768 /* Activity.swift */; };
+		82F071B42D037A7600C353F5 /* FilterButtonsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F071B32D037A7000C353F5 /* FilterButtonsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +55,6 @@
 		299C16A42CD537BD009F0430 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		299C16A62CD537BD009F0430 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29A10BAC2CF39EA100C44A30 /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
-		29A10BAE2CF3C35D00C44A30 /* FilterButtonsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonsManager.swift; sourceTree = "<group>"; };
 		29FBFABF2CDD36CA00F8EC88 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		29FBFAC12CDD36E100F8EC88 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		3F1EFF2A2CF0F47200503EDB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -65,6 +66,9 @@
 		3FA76C5A2CED38DA0086F19F /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		3FA76C5C2CED3C110086F19F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3FA76C5E2CED3C380086F19F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		8204AD922D02775000C04768 /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
+		8204AD942D02792000C04768 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		82F071B32D037A7000C353F5 /* FilterButtonsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -135,11 +139,11 @@
 				3F82805B2CF0F05600A70E7C /* Edit Profile */,
 				29A10BAB2CF39B1200C44A30 /* Utils */,
 				29FBFAC32CDD36E900F8EC88 /* Home Page */,
+				3F82805C2CF0F06D00A70E7C /* Profile */,
 				299C169E2CD537BC009F0430 /* Main.storyboard */,
 				299C16A12CD537BD009F0430 /* Assets.xcassets */,
 				299C16A32CD537BD009F0430 /* LaunchScreen.storyboard */,
 				299C16A62CD537BD009F0430 /* Info.plist */,
-				3F82805C2CF0F06D00A70E7C /* Profile */,
 			);
 			path = HobbyBloom;
 			sourceTree = "<group>";
@@ -159,7 +163,9 @@
 			children = (
 				29FBFABF2CDD36CA00F8EC88 /* HomePageView.swift */,
 				29FBFAC12CDD36E100F8EC88 /* HomePageViewController.swift */,
-				29A10BAE2CF3C35D00C44A30 /* FilterButtonsManager.swift */,
+				8204AD922D02775000C04768 /* ActivityCell.swift */,
+				8204AD942D02792000C04768 /* Activity.swift */,
+				82F071B32D037A7000C353F5 /* FilterButtonsManager.swift */,
 				295F094E2CEFAE3C00926C23 /* Category Filter */,
 				295F09492CEF9E6300926C23 /* Date Filter Page */,
 			);
@@ -276,6 +282,7 @@
 				295F094D2CEFAE1F00926C23 /* CategoryFilterViewController.swift in Sources */,
 				295F094B2CEFADCF00926C23 /* CategoryFilterView.swift in Sources */,
 				299C16992CD537BC009F0430 /* AppDelegate.swift in Sources */,
+				8204AD952D02792400C04768 /* Activity.swift in Sources */,
 				29FBFAC02CDD36CA00F8EC88 /* HomePageView.swift in Sources */,
 				295F09502CF1028E00926C23 /* Categories.swift in Sources */,
 				295F09462CEEE48100926C23 /* DateFilterViewController.swift in Sources */,
@@ -289,9 +296,10 @@
 				295F09462CEEE48100926C23 /* DateFilterViewController.swift in Sources */,
 				29FBFAC22CDD36E100F8EC88 /* HomePageViewController.swift in Sources */,
 				295F09482CEEE49100926C23 /* DateFilterView.swift in Sources */,
+				8204AD932D02775F00C04768 /* ActivityCell.swift in Sources */,
 				299C169B2CD537BC009F0430 /* SceneDelegate.swift in Sources */,
-				29A10BAF2CF3C35D00C44A30 /* FilterButtonsManager.swift in Sources */,
 				3F9631322D00E9D300FFB683 /* ImageViewUtils.swift in Sources */,
+				82F071B42D037A7600C353F5 /* FilterButtonsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,12 +1,11 @@
+
 //
 //  FilterButtonsManager.swift
 //  HobbyBloom
 //
 //  Created by Nithya Balaji on 11/24/24.
 //
-
 import UIKit
-
 // code for handling the filter buttons
 extension HomePageViewController {
     @objc func onButtonDateFilterTapped() {
@@ -41,6 +40,7 @@ extension HomePageViewController {
     @objc func notificationReceivedForDatesSelected(notification: Notification){
         self.selectedDates = (notification.object as! [DateComponents])
         self.updateDateFilterButtonView()
+        self.filterActivities()
     }
     
     func updateDateFilterButtonView() {
@@ -60,11 +60,13 @@ extension HomePageViewController {
     @objc func notificationReceivedForInterestsSelected(notification: Notification){
         self.selectedInterests = (notification.object as! [String])
         self.updateCategoriesFilterButtonView()
+        self.filterActivities()
     }
     
     @objc func notificationReceivedForPersonalitySelected(notification: Notification){
         self.selectedPersonality = (notification.object as! String?)
         self.updateCategoriesFilterButtonView()
+        self.filterActivities()
     }
     
     func updateCategoriesFilterButtonView() {
