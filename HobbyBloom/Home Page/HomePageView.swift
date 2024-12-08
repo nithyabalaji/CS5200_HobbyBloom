@@ -26,9 +26,11 @@ class HomePageView: UIView {
         setupTabBar()
         setupTabUnderline()
         setupFilterButtonsView()
+  
         setupTableView()
         initConstraints()
     }
+    
     
     func setupTableView() {
         tableView = UITableView()
