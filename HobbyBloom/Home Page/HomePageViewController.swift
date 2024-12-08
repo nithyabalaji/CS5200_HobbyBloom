@@ -23,6 +23,7 @@ class HomePageViewController: UIViewController {
     var filteredActivities: [Activity] = []
     var userInterests = [String]()
     var userPersonalities = [String]()
+    var activityID: String!
         
     override func loadView() {
         view = homeView
@@ -41,7 +42,6 @@ class HomePageViewController: UIViewController {
         self.homeView.locationArrowButton.addTarget(self, action: #selector(onLocationButtonTapped), for: .touchUpInside)
         self.homeView.buttonDateFilter.addTarget(self, action: #selector(onButtonDateFilterTapped), for: .touchUpInside)
         self.homeView.buttonCategoryFilter.addTarget(self, action: #selector(onButtonCategoryFilterTapped), for: .touchUpInside)
-        self.homeView.dummyButton.addTarget(self, action: #selector(activityButtonTapped), for: .touchUpInside)
         notificationCenter.addObserver(
             self,
             selector: #selector(notificationReceivedForDatesSelected(notification:)),
@@ -68,6 +68,14 @@ class HomePageViewController: UIViewController {
         self.homeView.tableView.delegate = self
         self.homeView.tableView.dataSource = self
     }
+    
+    @objc func onActivityCellTapped(activityID: String) {
+        print("Activity cell tapped with ID: \(activityID)")
+        let activityDetailsVC = ActivityDetailsViewController()
+        activityDetailsVC.activityID = activityID
+        navigationController?.pushViewController(activityDetailsVC, animated: true)
+    }
+
 
     @objc func onLogOutBarButtonTapped(){
         let logoutAlert = UIAlertController(title: "Logging out!", message: "Are you sure want to log out?",
@@ -305,5 +313,16 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
         let activity = self.filteredActivities[indexPath.row]
         cell.configure(with: activity)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Get the selected activity
+        let selectedActivity = filteredActivities[indexPath.row]
+        
+        // Use the activity ID directly if it is non-optional
+        let activityId = selectedActivity.id
+        
+        // Trigger the activity cell tapped action
+        onActivityCellTapped(activityID: activityId)
     }
 }

@@ -26,9 +26,6 @@ class HomePageView: UIView {
         setupTabBar()
         setupTabUnderline()
         setupFilterButtonsView()
-        dummyLabel = UILabel()
-        dummyLabel.text = "HELLOOOOOOO"
-        self.addSubviewToView(subview: dummyLabel)
   
         setupTableView()
         initConstraints()

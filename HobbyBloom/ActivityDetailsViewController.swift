@@ -245,6 +245,7 @@ class ActivityDetailsViewController: UIViewController  {
             if let document = document, document.exists {
                 // Fetch the document data as a dictionary
                 if let data = document.data() {
+                    let id = data["id"] as? String ?? "Unknown"
                     let name = data["name"] as? String ?? "Unknown"
                     let description = data["description"] as? String ?? "No description"
                     let address = data["address"] as? String ?? "Unknown"

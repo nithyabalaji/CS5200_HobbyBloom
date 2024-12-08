@@ -6,7 +6,7 @@
 //
 import UIKit
 import MapKit
-struct Activity {
+struct ActivityStruct {
        var id: String
        var name: String
        var imageName: String
@@ -43,7 +43,7 @@ class ActivityDetailsView: UIView, UICollectionViewDataSource, UICollectionViewD
     var seeAllCommentsButton: UIButton!
     var tagsSectionLabel: UILabel!
     var tagsCollectionView: UICollectionView!
-    var activity: Activity?
+    var activity: ActivityStruct?
     var users: [String] = []
     var tags: [String] = []
     var comments: [Comment] = []
