@@ -245,7 +245,7 @@ class RegisterScreenView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     
     let activityIndicator = UIActivityIndicatorView(style: .large)
     
-    let cities = ["Select a city","Boston", "New York", "Chicago", "Miami", "San Francisco"]
+    let cities = ["Select a city","Boston", "New York", "Chicago", "Austin", "San Francisco"]
     var selectedCity: String?
     
     override init(frame: CGRect) {
