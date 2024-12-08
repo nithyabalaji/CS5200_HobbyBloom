@@ -29,9 +29,36 @@ class ActivityDetailsViewController: UIViewController  {
         setupActions()
         self.activityDetailsView.seeAllButton.addTarget(self, action: #selector(didTapSeeAll), for: .touchUpInside)
         self.activityDetailsView.seeAllCommentsButton.addTarget(self, action: #selector(didTapSeeAllComments), for: .touchUpInside)
+        self.activityDetailsView.attendButton.addTarget(self, action: #selector(didTapattend), for: .touchUpInside)
     }
    
+    @objc private func didTapattend() {
+        activityDetailsView.attendButton.isEnabled = false
+        activityDetailsView.attendButton.setTitle("Attending", for: .normal)
+        addAttendee()
+        fetchUsersForActivity(activityId: activityID)
+    }
+    func addAttendee(){
+        guard let activityId = activityID else { return }
 
+        guard let userEmail = Auth.auth().currentUser?.email else {
+                print("User is not logged in.")
+                return
+            }
+
+            let attendees = [
+                "email": userEmail,
+            ] as [String: Any]
+
+        db.collection("activities")
+            .document(activityId)
+            .collection("attendees")
+            .addDocument(data: attendees) { error in
+                if let error = error {
+                    print("Error adding comment: \(error)")
+                }
+            }
+    }
         // MARK: - Add Comment
         private func addComment(text: String) {
             guard let activityId = activityID else { return }

@@ -36,7 +36,7 @@ class ActivityDetailsView: UIView, UICollectionViewDataSource, UICollectionViewD
     var mapView: MKMapView!
     var whoIsGoingSectionLabel: UILabel!
     var commentLabel: UILabel!
-    
+    var attendButton: UIButton!
     var usersStackView: UIStackView!
     var commentsStackView: UIStackView!
     var seeAllButton: UIButton!
@@ -81,7 +81,19 @@ class ActivityDetailsView: UIView, UICollectionViewDataSource, UICollectionViewD
             setupSeeAllButton()
             setupseecomments()
             setupTagsSectionLabel()
+            setupAttendButton()
         }
+    func setupAttendButton() {
+        attendButton = UIButton(type: .system)
+        attendButton.setTitle("Attend", for: .normal)
+        attendButton.setTitleColor(.black, for: .normal)
+        attendButton.backgroundColor = .myLightPurple
+        attendButton.layer.cornerRadius = 8
+        attendButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        attendButton.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(attendButton)
+    }
+
         
         func setupScrollView() {
             scrollView = UIScrollView()
@@ -288,9 +300,10 @@ class ActivityDetailsView: UIView, UICollectionViewDataSource, UICollectionViewD
                 // Date Time Label
                 dateTimeLabel.topAnchor.constraint(equalTo: dateTimeSectionLabel.bottomAnchor, constant: 8),
                 dateTimeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-                
+                attendButton.topAnchor.constraint(equalTo: dateTimeLabel.bottomAnchor, constant: 8),
+                attendButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 16),
                 // Location Section Label
-                locationSectionLabel.topAnchor.constraint(equalTo: dateTimeLabel.bottomAnchor, constant: 20),
+                locationSectionLabel.topAnchor.constraint(equalTo: attendButton.bottomAnchor, constant: 20),
                 locationSectionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
                 
                 // Location Label
