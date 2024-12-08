@@ -13,6 +13,9 @@ class EditProfileView: UIView {
     var TextFieldEmail: UITextField!
     var TextFieldPassword: UITextField!
     var TextFieldCity: UITextField!
+    var labelCityInstructions: UILabel!
+        var cityPicker: UIPickerView!
+        var buttonSendCity: UIButton!
     var SaveButton: UIButton!
     var image: UIImageView!
     override init(frame: CGRect) {
@@ -22,8 +25,11 @@ class EditProfileView: UIView {
             setupImage()
             setupTextFieldName()
             setupTextFieldPassword()
-            setupTextFieldCity()
-        setupSaveButton()
+        setupLabelCityInstructions()
+                setupCityPicker()
+                setupButtonSendCity()
+        setupTextFieldCity()
+            setupSaveButton()
             initConstraints()
         }
     
@@ -42,6 +48,28 @@ class EditProfileView: UIView {
                buttonTakePhoto.translatesAutoresizingMaskIntoConstraints = false
                self.addSubview(buttonTakePhoto)
     }
+    func setupLabelCityInstructions(){
+        labelCityInstructions = UILabel()
+        labelCityInstructions.text = "Pick your city!"
+        labelCityInstructions.translatesAutoresizingMaskIntoConstraints = false
+           self.addSubview(labelCityInstructions)
+       }
+       
+       // setting up mood picker...
+       func setupCityPicker(){
+           cityPicker = UIPickerView()
+           cityPicker.isUserInteractionEnabled = true
+           cityPicker.translatesAutoresizingMaskIntoConstraints = false
+           self.addSubview(cityPicker)
+       }
+       
+       // setting up buttonSendMood...
+       func setupButtonSendCity(){
+           buttonSendCity = UIButton(type: .system)
+           buttonSendCity.setTitle("Send City", for: .normal)
+           buttonSendCity.translatesAutoresizingMaskIntoConstraints = false
+           self.addSubview(buttonSendCity)
+       }
 
     func setupTextFieldName()
     {
@@ -86,7 +114,7 @@ class EditProfileView: UIView {
             SaveButton = UIButton(type: .system)
             SaveButton.setTitle("Save", for: .normal)
             SaveButton.setTitleColor(.white, for: .normal)
-        SaveButton.backgroundColor = .myDarkPurple
+            SaveButton.backgroundColor = .myDarkPurple
             SaveButton.layer.cornerRadius = 20
             SaveButton.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview(SaveButton)
@@ -111,12 +139,23 @@ class EditProfileView: UIView {
                 TextFieldPassword.trailingAnchor.constraint(equalTo: TextFieldName.trailingAnchor),
                 TextFieldPassword.heightAnchor.constraint(equalToConstant: 44),
 
-                TextFieldCity.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                TextFieldCity.topAnchor.constraint(equalTo: TextFieldPassword.bottomAnchor, constant: 16),
-                TextFieldCity.leadingAnchor.constraint(equalTo: TextFieldName.leadingAnchor),
-                TextFieldCity.trailingAnchor.constraint(equalTo: TextFieldName.trailingAnchor),
-                TextFieldCity.heightAnchor.constraint(equalToConstant: 44),
-
+//                TextFieldCity.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+//                TextFieldCity.topAnchor.constraint(equalTo: TextFieldPassword.bottomAnchor, constant: 16),
+//                TextFieldCity.leadingAnchor.constraint(equalTo: TextFieldName.leadingAnchor),
+//                TextFieldCity.trailingAnchor.constraint(equalTo: TextFieldName.trailingAnchor),
+//                TextFieldCity.heightAnchor.constraint(equalToConstant: 44),
+                            
+                            //labelMoodInstructions constraints...
+                labelCityInstructions.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                labelCityInstructions.topAnchor.constraint(equalTo: TextFieldPassword.bottomAnchor, constant: 16),
+                            
+                            //mood picker constraints...
+                cityPicker.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                cityPicker.topAnchor.constraint(equalTo: labelCityInstructions.bottomAnchor, constant: 1),
+                            
+                            //buttonSendMood constraints...
+//                buttonSendCity.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+//                buttonSendCity.topAnchor.constraint(equalTo: cityPicker.bottomAnchor, constant: 8),
 //                SaveButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
 //                SaveButton.topAnchor.constraint(equalTo: TextFieldPassword.bottomAnchor, constant: 16),
 //                SaveButton.leadingAnchor.constraint(equalTo: TextFieldName.leadingAnchor),
@@ -124,10 +163,12 @@ class EditProfileView: UIView {
 //                SaveButton.heightAnchor.constraint(equalToConstant: 44),
 
                 SaveButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                SaveButton.topAnchor.constraint(equalTo: TextFieldCity.bottomAnchor, constant: 32),
+                SaveButton.topAnchor.constraint(equalTo: cityPicker.bottomAnchor, constant: 32),
                 SaveButton.widthAnchor.constraint(equalToConstant: 120),
                 SaveButton.heightAnchor.constraint(equalToConstant: 40)
             ])
         }
 
 }
+
+
