@@ -14,8 +14,8 @@ class QuizView: UIView {
     ]
     
     let answerOptions = [
-        ["Fitness", "Art"],
-        ["Sport", "Festival"],
+        ["Fitness", "Arts & Crafts"],
+        ["Sports", "Festivals & Fairs"],
         ["Nature", "Party"],
         ["Music", "Fashion"],
         ["Food", "Comedy"],
