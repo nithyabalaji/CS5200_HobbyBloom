@@ -41,7 +41,7 @@ class HomePageViewController: UIViewController {
         self.homeView.locationArrowButton.addTarget(self, action: #selector(onLocationButtonTapped), for: .touchUpInside)
         self.homeView.buttonDateFilter.addTarget(self, action: #selector(onButtonDateFilterTapped), for: .touchUpInside)
         self.homeView.buttonCategoryFilter.addTarget(self, action: #selector(onButtonCategoryFilterTapped), for: .touchUpInside)
-        
+        self.homeView.dummyButton.addTarget(self, action: #selector(activityButtonTapped), for: .touchUpInside)
         notificationCenter.addObserver(
             self,
             selector: #selector(notificationReceivedForDatesSelected(notification:)),
@@ -68,7 +68,23 @@ class HomePageViewController: UIViewController {
         self.homeView.tableView.delegate = self
         self.homeView.tableView.dataSource = self
     }
-    
+
+    @objc func onLogOutBarButtonTapped(){
+        let logoutAlert = UIAlertController(title: "Logging out!", message: "Are you sure want to log out?",
+            preferredStyle: .actionSheet)
+        logoutAlert.addAction(UIAlertAction(title: "Yes, log out!", style: .default, handler: {(_) in
+                do{
+                    try Auth.auth().signOut()
+                }catch{
+                    print("Error occured!")
+                }
+            })
+        )
+        logoutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        self.present(logoutAlert, animated: true)
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         updateLinePosition()
