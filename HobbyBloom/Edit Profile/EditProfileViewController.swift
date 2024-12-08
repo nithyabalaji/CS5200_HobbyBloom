@@ -15,10 +15,15 @@ class EditProfileViewController: UIViewController {
     let Editprofileview = EditProfileView()
     let db = Firestore.firestore()
     let storage = Storage.storage()
+    let cities = ["Boston", "New York", "Chicago", "Austin", "San Francisco"]
+    var selectedCity = "Boston"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         Editprofileview.buttonTakePhoto.menu = getMenuImagePicker()
         Editprofileview.SaveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        Editprofileview.cityPicker.delegate = self
+        Editprofileview.cityPicker.dataSource = self
         // Do any additional setup after loading the view.
     }
     @objc func saveButtonTapped() {
@@ -97,4 +102,24 @@ class EditProfileViewController: UIViewController {
 
     
 
+}
+extension EditProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource{
+    
+    //returns the number of columns/components in the Picker View...
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    //returns the number of rows in the current component...
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return cities.count
+    }
+    
+    //set the title of currently picked row...
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        // on change selection, update selectedMood...
+        selectedCity = cities[row]
+        return cities[row]
+    }
+    
 }

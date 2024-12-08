@@ -9,6 +9,7 @@ import Foundation
 import FirebaseFirestore
 
 struct Activity: Decodable {
+    let id: String
     let name: String
     let city: String
     let description: String

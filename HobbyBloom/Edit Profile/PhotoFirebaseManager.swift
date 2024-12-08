@@ -60,9 +60,7 @@ extension EditProfileViewController {
                if let name = Editprofileview.TextFieldName.text, !name.isEmpty {
                    updatedData["name"] = name
                }
-               if let city = Editprofileview.TextFieldCity.text, !city.isEmpty {
-                   updatedData["city"] = city
-               }
+               updatedData["city"] = selectedCity
               
                if let photoURLString = photoURL?.absoluteString {
                    updatedData["photo_url"] = photoURLString
